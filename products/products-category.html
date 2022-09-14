@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>products-category</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="products.css">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+        integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+</head>
+
+<body>
+    <!-- header -->
+    <header>
+        <!-- container -->
+        <div class="container">
+            <nav style="background-color: #f8f9fa;" class="flex justify-center items-center py-5 px-28">
+                <!-- logo -->
+                <div style="height: 35px; width: 138px;" class="w-32 md:w-full z-20">
+                    <a href="home.html"><img
+                            src="https://hieu-icetea.github.io/T1909M_FANoFAN/img/logo-fanofan-color.png" alt=""></a>
+                </div>
+                <!-- link -->
+                <ul id="menu" class="invisible fixed z-20 top-0 left-0 w-full h-screen flex flex-col justify-center items-center bg-gray-900 bg-opacity-90 md:bg-transparent md:h-auto md:flex-row md:justify-around md:static
+                md:visible">
+                    <li class="m-12 md:m-0"><a href="../home/home.html"
+                            class="text-white md:text-black hover:text-red-500">Home</a>
+                    </li>
+                    <li class="m-12 md:m-0"><a href="products-category.html"
+                            class="text-white md:text-black hover:text-red-500">Product</a></li>
+                    <li class="m-12 md:m-0"><a href="#" class="text-white md:text-black hover:text-red-500">About</a>
+                    </li>
+                    <li class="m-12 md:m-0"><a href="#" class="text-white md:text-black hover:text-red-500">Support</a>
+                    </li>
+                    <button class="m-12 md:m-0 text-white md:text-black hover:text-red-500"><a
+                            href="../login-signup/signup.html">Signup</a></button>
+                    <button class="m-12 md:m-0 text-white md:text-black hover:text-red-500""><a href="../login-signup/login.html">Login</a></button>
+                </ul>
+                <!-- menu botton -->
+                <div id="menu-button" class="z-20 md:hidden cursor-pointer">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                    </svg>
+
+                </div>
+            </nav>
+        </div>
+    </header>
+    <!-- directory -->
+    <div class="grid">
+        <div class="grid__row wrapper-content">
+            <div class="grid__column-2">
+                <div class="border-2 border-sky-500 my-6">
+                    <div class="card-header border-b-2 border-sky-500 bg-slate-400 p-3 text-xl text-white"> Ceiling Fans</div>
+                    <div class="card-body text-info ">
+                        <a class="card-text p-3 hover:text-slate-600" href="# ">Modern Ceiling Fan</a> <br>
+                        <a class="card-text p-3" href="# ">Classic Ceiling Fan</a> <br>
+                        <a class="card-text p-3" href="# ">Beautiful Wall Fan</a> <br>
+                        <a class="card-text p-3" href="# ">Unique-Strange Ceiling fan</a> <br>
+                        <a class="card-text p-3" href="# ">Ceiling Fan Accessories</a> <br>
+                    </div>
+                </div>
+                <div class="border-2 border-sky-500 ">
+                    <div class="card-header border-b-2 border-sky-500 bg-slate-400 p-3 text-xl text-white">Table Fan</div>
+                    <div class="card-body text-info ">
+                        <a class="card-text p-3" href="# ">Table fan with 3 wings</a> <br>
+                        <a class="card-text p-3" href="# ">Table fan charged</a> <br>
+                        <a class="card-text p-3" href="# ">High foot fan</a> <br>
+                        <a class="card-text p-3" href="# ">Misting fan</a> <br>
+                        <a class="card-text p-3" href="# ">Fans for outdoor</a> <br>
+                    </div>
+                </div>
+            </div>
+            <div class="grid__column-10">
+                <div class="container__product">
+                    <div class="grid">
+                        <div class="grid__row">
+                            <div class="grid grid-cols-3 gap-4 py-4 px-14">
+                                <div>
+                                    <h2 class="font-bold text-3xl">CEILING FANS</h2>
+                                    <div>
+                                        <p class="text-lg">Our Ceiling Fan Products</p>
+                                    </div>
+                                </div>
+                                <div>
+                                    <form class="" action="">
+                                        <input class="border-solid border-2 border-gray-500 text-base p-1 hover:border-cyan-400" type="text" placeholder="Search here...">
+                                        <button><i class="fa fa-search border-solid border-2 border-gray-500 text-base p-1 hover:bg-gray-500 hover:border-transparent hover:text-white text-slate-500" aria-hidden="true"></i></button>
+                                    </form>
+                                </div>
+                                <div>
+                                    <select class="custom-select border-solid border-2 border-gray-700 text-base p-1">
+                                        <option selected>Order by price: High to Low</option>
+                                        <option value="1">Order by price: Low to High</option>
+                                        <option value="2">Order by popularity</option>
+                                        <option value="3">Order by price point</option>
+                                        <option value="3">Latest</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="grid__column-2-4">
+                                <div class="container__product-item">
+                                    <div class="container__product-item-img"
+                                        style="background-image: url(../img/table-fan-1.jpg);">
+                                    </div>
+                                    <h4 class="container__product-item-heading">Dyson Air Multiplier</h4>
+                                    <p class="container__product-item-heading">Create a powerful stream of uninterrupted
+                                        airflow</p>
+                                    <div class="container__product-item-price">
+                                        <span class="container__product-item-price-current text-red-600">1.119 $</span>
+                                    </div>
+                                    <div class="container__product-item-source">
+                                        <button
+                                            class="border border-inherit bg-slate-900 text-white px-3 py-1 rounded-md hover:bg-red-500 hover:border-transparent  justify-between items-center"><i
+                                                class="fa fa-cart-plus" aria-hidden="true"></i></button>
+                                        <button
+                                            class="border border-inherit bg-slate-900 text-white px-3 py-1 rounded-md hover:bg-red-500 hover:border-transparent  justify-between items-center ml-2">Show
+                                            more</button>
+                                    </div>
+                                    <div class="container__product-item-sale">
+                                        <span class="container__product-item-sale-percent">35%</span>
+                                        <span class="container__product-item-sale-label">GIẢM</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="grid__column-2-4">
+                                <div class="container__product-item">
+                                    <div class="container__product-item-img"
+                                        style="background-image: url(../img/table-fan-1.jpg);">
+                                    </div>
+                                    <h4 class="container__product-item-heading">Dyson Air Multiplier</h4>
+                                    <p class="container__product-item-heading">Create a powerful stream of uninterrupted
+                                        airflow</p>
+                                    <div class="container__product-item-price">
+                                        <span class="container__product-item-price-current text-red-600">1.119 $</span>
+                                    </div>
+                                    <div class="container__product-item-source">
+                                        <button
+                                            class="border border-inherit bg-slate-900 text-white px-3 py-1 rounded-md hover:bg-red-500 hover:border-transparent  justify-between items-center"><i
+                                                class="fa fa-cart-plus" aria-hidden="true"></i></button>
+                                        <button
+                                            class="border border-inherit bg-slate-900 text-white px-3 py-1 rounded-md hover:bg-red-500 hover:border-transparent  justify-between items-center ml-2">Show
+                                            more</button>
+                                    </div>
+                                    <div class="container__product-item-sale">
+                                        <span class="container__product-item-sale-percent">35%</span>
+                                        <span class="container__product-item-sale-label">GIẢM</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="grid__column-2-4">
+                                <div class="container__product-item">
+                                    <div class="container__product-item-img"
+                                        style="background-image: url(../img/table-fan-1.jpg);">
+                                    </div>
+                                    <h4 class="container__product-item-heading">Dyson Air Multiplier</h4>
+                                    <p class="container__product-item-heading">Create a powerful stream of uninterrupted
+                                        airflow</p>
+                                    <div class="container__product-item-price">
+                                        <span class="container__product-item-price-current text-red-600">1.119 $</span>
+                                    </div>
+                                    <div class="container__product-item-source">
+                                        <button
+                                            class="border border-inherit bg-slate-900 text-white px-3 py-1 rounded-md hover:bg-red-500 hover:border-transparent  justify-between items-center"><i
+                                                class="fa fa-cart-plus" aria-hidden="true"></i></button>
+                                        <button
+                                            class="border border-inherit bg-slate-900 text-white px-3 py-1 rounded-md hover:bg-red-500 hover:border-transparent  justify-between items-center ml-2">Show
+                                            more</button>
+                                    </div>
+                                    <div class="container__product-item-sale">
+                                        <span class="container__product-item-sale-percent">35%</span>
+                                        <span class="container__product-item-sale-label">GIẢM</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="grid__column-2-4">
+                                <div class="container__product-item">
+                                    <div class="container__product-item-img"
+                                        style="background-image: url(../img/table-fan-1.jpg);">
+                                    </div>
+                                    <h4 class="container__product-item-heading">Dyson Air Multiplier</h4>
+                                    <p class="container__product-item-heading">Create a powerful stream of uninterrupted
+                                        airflow</p>
+                                    <div class="container__product-item-price">
+                                        <span class="container__product-item-price-current text-red-600">1.119 $</span>
+                                    </div>
+                                    <div class="container__product-item-source">
+                                        <button
+                                            class="border border-inherit bg-slate-900 text-white px-3 py-1 rounded-md hover:bg-red-500 hover:border-transparent  justify-between items-center"><i
+                                                class="fa fa-cart-plus" aria-hidden="true"></i></button>
+                                        <button
+                                            class="border border-inherit bg-slate-900 text-white px-3 py-1 rounded-md hover:bg-red-500 hover:border-transparent  justify-between items-center ml-2">Show
+                                            more</button>
+                                    </div>
+                                    <div class="container__product-item-sale">
+                                        <span class="container__product-item-sale-percent">35%</span>
+                                        <span class="container__product-item-sale-label">GIẢM</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="grid__column-2-4">
+                                <div class="container__product-item">
+                                    <div class="container__product-item-img"
+                                        style="background-image: url(../img/table-fan-1.jpg);">
+                                    </div>
+                                    <h4 class="container__product-item-heading">Dyson Air Multiplier</h4>
+                                    <p class="container__product-item-heading">Create a powerful stream of uninterrupted
+                                        airflow</p>
+                                    <div class="container__product-item-price">
+                                        <span class="container__product-item-price-current text-red-600">1.119 $</span>
+                                    </div>
+                                    <div class="container__product-item-source">
+                                        <button
+                                            class="border border-inherit bg-slate-900 text-white px-3 py-1 rounded-md hover:bg-red-500 hover:border-transparent  justify-between items-center"><i
+                                                class="fa fa-cart-plus" aria-hidden="true"></i></button>
+                                        <button
+                                            class="border border-inherit bg-slate-900 text-white px-3 py-1 rounded-md hover:bg-red-500 hover:border-transparent  justify-between items-center ml-2">Show
+                                            more</button>
+                                    </div>
+                                    <div class="container__product-item-sale">
+                                        <span class="container__product-item-sale-percent">35%</span>
+                                        <span class="container__product-item-sale-label">GIẢM</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="grid__column-2-4">
+                                <div class="container__product-item">
+                                    <div class="container__product-item-img"
+                                        style="background-image: url(../img/table-fan-1.jpg);">
+                                    </div>
+                                    <h4 class="container__product-item-heading">Dyson Air Multiplier</h4>
+                                    <p class="container__product-item-heading">Create a powerful stream of uninterrupted
+                                        airflow</p>
+                                    <div class="container__product-item-price">
+                                        <span class="container__product-item-price-current text-red-600">1.119 $</span>
+                                    </div>
+                                    <div class="container__product-item-source">
+                                        <button
+                                            class="border border-inherit bg-slate-900 text-white px-3 py-1 rounded-md hover:bg-red-500 hover:border-transparent  justify-between items-center"><i
+                                                class="fa fa-cart-plus" aria-hidden="true"></i></button>
+                                        <button
+                                            class="border border-inherit bg-slate-900 text-white px-3 py-1 rounded-md hover:bg-red-500 hover:border-transparent  justify-between items-center ml-2">Show
+                                            more</button>
+                                    </div>
+                                    <div class="container__product-item-sale">
+                                        <span class="container__product-item-sale-percent">35%</span>
+                                        <span class="container__product-item-sale-label">GIẢM</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="grid__column-2-4">
+                                <div class="container__product-item">
+                                    <div class="container__product-item-img"
+                                        style="background-image: url(../img/table-fan-1.jpg);">
+                                    </div>
+                                    <h4 class="container__product-item-heading">Dyson Air Multiplier</h4>
+                                    <p class="container__product-item-heading">Create a powerful stream of uninterrupted
+                                        airflow</p>
+                                    <div class="container__product-item-price">
+                                        <span class="container__product-item-price-current text-red-600">1.119 $</span>
+                                    </div>
+                                    <div class="container__product-item-source">
+                                        <button
+                                            class="border border-inherit bg-slate-900 text-white px-3 py-1 rounded-md hover:bg-red-500 hover:border-transparent  justify-between items-center"><i
+                                                class="fa fa-cart-plus" aria-hidden="true"></i></button>
+                                        <button
+                                            class="border border-inherit bg-slate-900 text-white px-3 py-1 rounded-md hover:bg-red-500 hover:border-transparent  justify-between items-center ml-2">Show
+                                            more</button>
+                                    </div>
+                                    <div class="container__product-item-sale">
+                                        <span class="container__product-item-sale-percent">35%</span>
+                                        <span class="container__product-item-sale-label">GIẢM</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="grid__column-2-4">
+                                <div class="container__product-item">
+                                    <div class="container__product-item-img"
+                                        style="background-image: url(../img/table-fan-1.jpg);">
+                                    </div>
+                                    <h4 class="container__product-item-heading">Dyson Air Multiplier</h4>
+                                    <p class="container__product-item-heading">Create a powerful stream of uninterrupted
+                                        airflow</p>
+                                    <div class="container__product-item-price">
+                                        <span class="container__product-item-price-current text-red-600">1.119 $</span>
+                                    </div>
+                                    <div class="container__product-item-source">
+                                        <button
+                                            class="border border-inherit bg-slate-900 text-white px-3 py-1 rounded-md hover:bg-red-500 hover:border-transparent  justify-between items-center"><i
+                                                class="fa fa-cart-plus" aria-hidden="true"></i></button>
+                                        <button
+                                            class="border border-inherit bg-slate-900 text-white px-3 py-1 rounded-md hover:bg-red-500 hover:border-transparent  justify-between items-center ml-2">Show
+                                            more</button>
+                                    </div>
+                                    <div class="container__product-item-sale">
+                                        <span class="container__product-item-sale-percent">35%</span>
+                                        <span class="container__product-item-sale-label">GIẢM</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="grid__column-2-4">
+                                <div class="container__product-item">
+                                    <div class="container__product-item-img"
+                                        style="background-image: url(../img/table-fan-1.jpg);">
+                                    </div>
+                                    <h4 class="container__product-item-heading">Dyson Air Multiplier</h4>
+                                    <p class="container__product-item-heading">Create a powerful stream of uninterrupted
+                                        airflow</p>
+                                    <div class="container__product-item-price">
+                                        <span class="container__product-item-price-current text-red-600">1.119 $</span>
+                                    </div>
+                                    <div class="container__product-item-source">
+                                        <button
+                                            class="border border-inherit bg-slate-900 text-white px-3 py-1 rounded-md hover:bg-red-500 hover:border-transparent  justify-between items-center"><i
+                                                class="fa fa-cart-plus" aria-hidden="true"></i></button>
+                                        <button
+                                            class="border border-inherit bg-slate-900 text-white px-3 py-1 rounded-md hover:bg-red-500 hover:border-transparent  justify-between items-center ml-2">Show
+                                            more</button>
+                                    </div>
+                                    <div class="container__product-item-sale">
+                                        <span class="container__product-item-sale-percent">35%</span>
+                                        <span class="container__product-item-sale-label">GIẢM</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <a href="products-category.html"><button
+            class="invisible border border-inherit bg-slate-900 text-white px-9 py-3 rounded-full hover:bg-red-500 hover:border-transparent flex justify-between items-center m-auto my-8 md:visible">More
+            product >></button></a>
+<!-- footer -->
+<section class="grid grid-cols-4 gap-5 py-5 px-10 mr-auto">
+    <div>
+        <h6 class="text-lg font-bold uppercase text-gray-700">Copany name</h6>
+        <hr style="height: 2em;width:25%;">
+        <p class="text-base">The FANoFAN Co. is the original and premier source for contemporary ceiling fan design,
+            producing the
+            most complete, exclusively modern collection of ceiling fans available.</p>
+    </div>
+    <div>
+        <h6 class="text-lg font-bold uppercase text-gray-700">PRODUCTS</h6>
+        <hr style="height: 2em;width:25%;">
+        <p><a class="text-base hover:text-orange-400" href="">Ceiling Fans</a></p>
+        <p><a class="text-base hover:text-orange-400" href="">Table Fans</a></p>
+        <p><a class="text-base hover:text-orange-400" href="">Exhaust</a></p>
+        <p><a class="text-base hover:text-orange-400" href="">Royal Fans</a></p>
+    </div>
+
+    <div>
+        <h6 class="text-lg font-bold uppercase text-gray-700">USEFUL LINKS</h6>
+        <hr style="height: 2em;width:25%;">
+        <p><a class="text-base hover:text-orange-400" href="">Your Account</a></p>
+        <p><a class="text-base hover:text-orange-400" href="">Become an Affiliate</a></p>
+        <p><a class="text-base hover:text-orange-400" href="">Shipping Rates</a></p>
+        <p><a class="text-base hover:text-orange-400" href="">Help</a></p>
+    </div>
+
+    <div>
+        <h6 class="text-lg font-bold uppercase text-gray-700">CONTACT</h6>
+        <hr style="height: 2em;width:25%;">
+        <p><i class="fa fa-home text-base" aria-hidden="true">Ha Noi, Viet Nam</i></p>
+        <p><i class="fa fa-envelope-o text-base" aria-hidden="true">abcd@gmail.com</i></p>
+        <p><i class="fa fa-phone text-base" aria-hidden="true">90-123-4567</i></p>
+        <p><i class="fa fa-print text-base" aria-hidden="true">90-123-4567</i></p>
+    </div>
+</section>
+<div class="text-center my-4">
+    <p class="text-gray-500">&copy;2020 Copyright: FANoFAN.vn</p>
+</div>
+<!-- mainjs -->
+<script src="../main.js"></script>
+
+</body>
+
+</html>
