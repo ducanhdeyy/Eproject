@@ -1,0 +1,71 @@
+.grid {
+    width: 1200px;
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+.grid__full-width {
+    width: 100%;
+}
+
+
+/* Cùng nằm trên một hàng ngang và xuống dòng */
+
+.grid__row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: -75px;
+    margin-right: -75px;
+    margin-top: 10px;
+}
+
+.grid__column-2 {
+    padding-left: 5px;
+    padding-right: 5px;
+    width: calc((2/12) * 100%);
+}
+
+.grid__column-2-4 {
+    /* 5 sản phẩm */
+    padding-left: 15px;
+    padding-right: 15px;
+    width: calc((2.5/10) * 100%);
+    cursor: pointer;
+}
+
+.grid__column-2-4 {
+    /* 5 sản phẩm */
+    padding-left: 15px;
+    padding-right: 15px;
+    width: calc((2.5/10) * 100%);
+    cursor: pointer;
+}
+.container__product {
+    margin-bottom: 10px;
+}
+
+.container__product-item {
+    position: relative;
+    display: block;
+    text-decoration: none;
+    margin-top: 10px;
+    border-radius: 2px;
+    background-color: var(--white-color);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    transition: transform linear 0.1s;
+    will-change: transform;
+}
+
+.container__product-item:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 1px 20px rgba(0, 0, 0, 0.05);
+}
+
+.container__product-item-img {
+    padding-top: 100%;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: top center;
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+}
