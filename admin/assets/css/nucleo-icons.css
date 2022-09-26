@@ -49,9 +49,6 @@ License - nucleoapp.com/license/
   font-size: 5em;
 }
 
-/*----------------------------------
-  add a square/circle background
------------------------------------*/
 .ni.square,
 .ni.circle {
   padding: 0.33333333em;
@@ -63,9 +60,6 @@ License - nucleoapp.com/license/
   border-radius: 50%;
 }
 
-/*------------------------
-  list icons
--------------------------*/
 .ni-ul {
   padding-left: 0;
   margin-left: 2.14285714em;
@@ -94,9 +88,6 @@ License - nucleoapp.com/license/
   left: -1.9047619em;
 }
 
-/*------------------------
-  spinning icons
--------------------------*/
 .ni.spin {
   -webkit-animation: nc-spin 2s infinite linear;
   -moz-animation: nc-spin 2s infinite linear;
@@ -141,9 +132,6 @@ License - nucleoapp.com/license/
   }
 }
 
-/*------------------------
-  rotated/flipped icons
--------------------------*/
 .ni.rotate-90 {
   filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=1);
   -webkit-transform: rotate(90deg);
@@ -189,9 +177,6 @@ License - nucleoapp.com/license/
   transform: scale(1, -1);
 }
 
-/*------------------------
-    font icons
--------------------------*/
 
 .ni-active-40::before {
   content: "\ea02";
@@ -594,4 +579,3 @@ License - nucleoapp.com/license/
 }
 
 
-/* all icon font classes list here */
