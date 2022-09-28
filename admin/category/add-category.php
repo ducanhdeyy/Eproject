@@ -1,21 +1,25 @@
 <?php
-//kết nối vào CSDL 
-$conn = mysqli_connect('localhost','root','','fanofan');
-if (!$conn) {
-    echo mysqli_connect_error();
+session_start();
+//echo __DIR__; //C:\xampp\htdocs\shops\admin\user
+$dir = str_replace("admin\category", "", __DIR__); //C:\xampp\htdocs\shops\
+require_once $dir . 'dals/CategoryDAL.php'; //relative C:\xampp\htdocs\shops\UserDAL.php -> tuyet doi
+$dal = new CategoryDAL();
+if(isset($_POST['name'])){
+   $checked = $dal->addOne($_POST);
+   if($checked){
+    //flash session
+     $_SESSION['add-status']= [
+        'success'=>1,
+        'message'=>'Add successfully'
+     ];
+   }else{
+    $_SESSION['add-status']= [
+        'success'=>0,
+        'message'=>'Add failed'
+    ];
+   }
 }
-$categoryRS = mysqli_query($conn, "SELECT * FROM category");
-if (isset($_FILES['image']) && $_FILES['image']['name']) {
-    $duongDanAnh = 'uploads/'. time() . $_FILES['image']['name'];
-    move_uploaded_file($_FILES['image']['tmp_name'],$duongDanAnh);
-    $name = $_POST['name'];
-    $category_id = $_POST['category_id'];
-    $price = $_POST['price'];
-    $content = $_POST['content'];
-    mysqli_query($conn,"INSERT INTO product(name,price,content,image,category_id) VALUES('$name','$price','$content','$duongDanAnh','$category_id')");
-    echo mysqli_error($conn);
-}
-$rs = mysqli_query($conn, "SELECT *,product.id as product_id,product.name as product_name,category.name as category_name FROM product INNER JOIN category ON product.category_id=category.id");
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -225,62 +229,73 @@ $rs = mysqli_query($conn, "SELECT *,product.id as product_id,product.name as pro
     <div class="container-fluid py-4">
       <div class="row">
         <div class="col-md-7 mt-4">
-          <div class="card h-100 mb-4">
+          <div class="card">
+            <div class="card-header pb-0 px-3">
+              <h6 class="mb-0">Billing Information</h6>
+            </div>
             <div class="card-body pt-4 p-3">
+              <ul class="list-group">
+                <li class="list-group-item border-0 d-flex p-4 mb-2 bg-gray-100 border-radius-lg">
+                  <div class="d-flex flex-column">
+                    <h6 class="mb-3 text-sm">Oliver Liam</h6>
+                    <span class="mb-2 text-xs">Company Name: <span class="text-dark font-weight-bold ms-sm-2">Viking Burrito</span></span>
+                    <span class="mb-2 text-xs">Email Address: <span class="text-dark ms-sm-2 font-weight-bold">oliver@burrito.com</span></span>
+                    <span class="text-xs">VAT Number: <span class="text-dark ms-sm-2 font-weight-bold">FRB1235476</span></span>
+                  </div>
+                  <div class="ms-auto text-end">
+                    <a class="btn btn-link text-danger text-gradient px-3 mb-0" href="javascript:;"><i class="far fa-trash-alt me-2"></i>Delete</a>
+                    <a class="btn btn-link text-dark px-3 mb-0" href="javascript:;"><i class="fas fa-pencil-alt text-dark me-2" aria-hidden="true"></i>Edit</a>
+                  </div>
+                </li>
+                <li class="list-group-item border-0 d-flex p-4 mb-2 mt-3 bg-gray-100 border-radius-lg">
+                  <div class="d-flex flex-column">
+                    <h6 class="mb-3 text-sm">Lucas Harper</h6>
+                    <span class="mb-2 text-xs">Company Name: <span class="text-dark font-weight-bold ms-sm-2">Stone Tech Zone</span></span>
+                    <span class="mb-2 text-xs">Email Address: <span class="text-dark ms-sm-2 font-weight-bold">lucas@stone-tech.com</span></span>
+                    <span class="text-xs">VAT Number: <span class="text-dark ms-sm-2 font-weight-bold">FRB1235476</span></span>
+                  </div>
+                  <div class="ms-auto text-end">
+                    <a class="btn btn-link text-danger text-gradient px-3 mb-0" href="javascript:;"><i class="far fa-trash-alt me-2"></i>Delete</a>
+                    <a class="btn btn-link text-dark px-3 mb-0" href="javascript:;"><i class="fas fa-pencil-alt text-dark me-2" aria-hidden="true"></i>Edit</a>
+                  </div>
+                </li>
+                <li class="list-group-item border-0 d-flex p-4 mb-2 mt-3 bg-gray-100 border-radius-lg">
+                  <div class="d-flex flex-column">
+                    <h6 class="mb-3 text-sm">Ethan James</h6>
+                    <span class="mb-2 text-xs">Company Name: <span class="text-dark font-weight-bold ms-sm-2">Fiber Notion</span></span>
+                    <span class="mb-2 text-xs">Email Address: <span class="text-dark ms-sm-2 font-weight-bold">ethan@fiber.com</span></span>
+                    <span class="text-xs">VAT Number: <span class="text-dark ms-sm-2 font-weight-bold">FRB1235476</span></span>
+                  </div>
+                  <div class="ms-auto text-end">
+                    <a class="btn btn-link text-danger text-gradient px-3 mb-0" href="javascript:;"><i class="far fa-trash-alt me-2"></i>Delete</a>
+                    <a class="btn btn-link text-dark px-3 mb-0" href="javascript:;"><i class="fas fa-pencil-alt text-dark me-2" aria-hidden="true"></i>Edit</a>
+                  </div>
+                </li>
+              </ul>
             </div>
           </div>
         </div>
         <div class="col-md-5 mt-4">
-          <div class="card h-100 mb-4 p-2">
+          <div class="card h-10 mb-4">
           <?php
-            if (isset($_SESSION['add-status'])) {
-                if ($_SESSION['add-status']['success'] == 1) {
+             if(isset($_SESSION['add-status'])){
+                if($_SESSION['add-status']['success']==1){
                     echo '<div class="alert alert-success" role="alert">
-                    ' . $_SESSION['add-status']['message'] . '
+                    '.$_SESSION['add-status']['message'].'
                   </div>';
-                } else {
+                }else{
                     echo '<div class="alert alert-danger" role="alert">
-                    ' . $_SESSION['add-status']['message'] . '
+                    '.$_SESSION['add-status']['message'].'
                   </div>';
                 }
                 unset($_SESSION['add-status']);
-            }
+             }
             ?>
-            <form method="post" enctype="multipart/form-data">
-                <div class="mx-3">
-                    <label for="name" class="form-label text-xl mt-4">Image</label>
-                    <input type="file" required class="form-control" name="image" id="image">
-                </div>
-
-
-                <div class="mx-3">
-                    <label for="name" class="form-label text-xl">Name</label>
-                    <input type="text" required class="form-control" name="name" id="name">
-                </div>
-
-                <div class="mx-3">
-                    <label for="price" class="form-label text-xl">Price</label>
-                    <input type="text" required class="form-control" name="price" id="price">
-                </div>
-
-
-                <div class="mx-3">
-                    <label for="category" class="form-label text-xl">Category</label>
-                    <select class="form-control" name="category_id" id="category">
-                        <?php foreach ($categoryList as $category) {
-                        ?>
-                            <option value="<?php echo $category->id; ?>"><?php echo $category->name; ?></option>
-                        <?php
-                        } ?>
-                    </select>
-                </div>
-
-
-                <div class="m-3">
-                    <label for="content" class="form-label text-xl">Content</label>
-                    <textarea class="form-control" name="content" id="content">
-
-                    </textarea>
+            <form method="post">
+                <h4 class="mx-3 mt-3">Add Category</h4>
+                <div class="mx-3 mb-3">
+                    <label for="name" class="form-label">Name</label>
+                    <input type="text" required class="form-control"  name="name" id="name">
                 </div>
 
 
@@ -288,7 +303,8 @@ $rs = mysqli_query($conn, "SELECT *,product.id as product_id,product.name as pro
                     <button class="btn btn-primary mx-3">Add</button>
                 </div>
             </form>
-        </div>
+            </div>
+          </div>
       </div>
       <footer class="footer pt-3  ">
         <div class="container-fluid">
