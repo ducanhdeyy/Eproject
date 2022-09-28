@@ -52,7 +52,6 @@
         $prp->bindParam(':email',$data['email']);
         $prp->bindParam(':password',$password);
         $prp->bindParam(':phone',$data['phone']); 
-    
         $password=md5(md5($data['password']));
         try{
             $prp->execute();

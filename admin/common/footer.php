@@ -7,7 +7,7 @@
                   document.write(new Date().getFullYear())
                 </script>,
                 made with <i class="fa fa-heart"></i> by
-                <a href="" class="font-weight-bold" target="">Nguyen Duc Anh-Nguyen Tuan Anh</a>
+                <a href="" class="font-weight-bold " target="">Nguyen Duc Anh-Nguyen Tuan Anh</a>
                 for a better web.
               </div>
             </div>
