@@ -1,15 +1,15 @@
-<?php 
- $dir = str_replace("admin\user","",__DIR__);
- require_once $dir.'dals/UserDAL.php';
- $dal = new UserDAL();
- if(isset($_GET['action'])){
-    $id = $_GET['id'];
-   
-    if(is_numeric($id) && $_GET['action']=='delete'){
-        $dal->deleteOne($id);
-    }
- }
- $list = $dal->getList();
+<?php
+$dir = str_replace("admin\user", "", __DIR__);
+require_once $dir . 'dals/UserDAL.php';
+$dal = new UserDAL();
+if (isset($_GET['action'])) {
+  $id = $_GET['id'];
+
+  if (is_numeric($id) && $_GET['action'] == 'delete') {
+    $dal->deleteOne($id);
+  }
+}
+$list = $dal->getList();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -106,7 +106,7 @@
   </aside>
   <main class="main-content position-relative border-radius-lg ">
     <!-- Navbar -->
-    <?php include_once'../common/nav.php' ?>
+    <?php include_once '../common/nav.php' ?>
     <!-- End Navbar -->
     <div class="container-fluid py-4">
       <div class="row">
@@ -129,28 +129,28 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <?php foreach($list as $r): ?>
-                    <tr>
+                    <?php foreach ($list as $r) : ?>
+                      <tr>
                         <th class="text-center" scope="row"><?php echo $r->id; ?></th>
                         <td class="text-center"><?php echo $r->author; ?></td>
                         <td class="text-center"><?php echo $r->email; ?></td>
                         <td class="text-center"><?php echo $r->phone; ?></td>
                         <td>
-                    
-                        <a class="text-secondary font-weight-bold text-xs p-1" href="../user/edit.php?id=<?php echo $r->id; ?>">Edit</a>
-                        <a class="text-secondary font-weight-bold text-xs p-1" onclick="return confirm('Are you sure you want to delete ?')" class="btn btn-danger" href="?action=delete&id=<?php echo $r->id; ?>">Delete</a>
-                        
+
+                          <a class="text-secondary font-weight-bold text-xs p-1" href="../user/edit.php?id=<?php echo $r->id; ?>">Edit</a>
+                          <a class="text-secondary font-weight-bold text-xs p-1" onclick="return confirm('Are you sure you want to delete ?')" class="btn btn-danger" href="?action=delete&id=<?php echo $r->id; ?>">Delete</a>
+
                         </td>
-                    </tr>
-                    <?php endforeach?>
-                </tbody>
+                      </tr>
+                    <?php endforeach ?>
+                  </tbody>
                 </table>
               </div>
             </div>
           </div>
         </div>
       </div>
-  <?php include_once'../common/footer.php' ?>
+      <?php include_once '../common/footer.php' ?>
     </div>
   </main>
 </body>

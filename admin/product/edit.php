@@ -1,4 +1,5 @@
 <?php
+require_once('./../../config.php');
 //kết nối vào mysql server 
 $connect = mysqli_connect('localhost', 'root', '', 'fanofan');
 if (!$connect) {
@@ -127,7 +128,7 @@ $categoryRS = mysqli_query($connect, "SELECT * FROM category");
               <div class="mb-2">
                 <label for="name" class="form-label">Image</label>
                 <input type="file" required class="form-control" name="image" id="image">
-                <img src="<?php echo $obj['image']; ?>" width="50px" />
+                <img src="<?php echo BASE_URL . $obj['image']; ?>" width="50px" />
               </div>
 
 

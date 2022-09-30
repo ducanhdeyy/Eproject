@@ -1,5 +1,6 @@
 <?php
 //kết nối vào CSDL 
+require_once('./../../config.php');
 $conn = mysqli_connect('localhost', 'root', '', 'fanofan');
 if (!$conn) {
   echo mysqli_connect_error();
@@ -123,7 +124,7 @@ $rs = mysqli_query($conn, "SELECT * FROM product");
                   <th class="text-center text-uppercase text-secondary text-sm font-weight-bolder">price</th>
                   <th class="text-center text-uppercase text-secondary text-sm font-weight-bolder">content</th>
                   <th class="text-center text-uppercase text-secondary text-sm font-weight-bolder">image</th>
-                  <th class="text-center text-uppercase text-secondary text-sm font-weight-bolder"></th>
+                  <th class="text-center text-uppercase text-secondary text-sm font-weight-bolder"> Action</th>
                 </tr>
               </thead>
               <tbody>
@@ -133,8 +134,8 @@ $rs = mysqli_query($conn, "SELECT * FROM product");
                     <td class="text-center"><?php echo $product['name']; ?></td>
                     <td class="text-center"><?php echo $product['price']; ?></td>
                     <td class="text-center"><?php echo $product['content']; ?></td>
-                    <td class="text-center"><img src="<?php echo $product['image']; ?>" alt="" width="50px"></td>
-                    <td>
+                    <td class="text-center"><img src="<?php echo BASE_URL . $product['image']; ?>" alt="" width="50px"></td>
+                    <td class="action">
                       <a class="text-secondary font-weight-bold text-sm p-1" href="edit.php?id=<?php echo $product['id']; ?>">Edit</a>
                       <a class="text-secondary font-weight-bold text-sm p-1" href="delete.php?id=<?php echo $product['id']; ?>" onclick=" return confirm('Bạn thật sự muốn xóa ?') ">Delete</a>
                     </td>
@@ -146,6 +147,11 @@ $rs = mysqli_query($conn, "SELECT * FROM product");
         </div>
         <?php include_once '../common/footer.php' ?>
       </div>
+      <style>
+        .action {
+          text-align: center;
+        }
+      </style>
   </main>
   <!--   Core JS Files   -->
   <script src="../assets/js/core/popper.min.js"></script>
