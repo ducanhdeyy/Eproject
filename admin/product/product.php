@@ -17,7 +17,7 @@ if (!$conn) {
 //   echo mysqli_error($conn);
 // }
 // $rs = mysqli_query($conn, "SELECT *,product.id as product_id,product.name as product_name,category.name as category_name FROM product INNER JOIN category ON product.category_id=category.id");
-// 
+
 $rs = mysqli_query($conn, "SELECT * FROM product");
 
 ?>
@@ -56,19 +56,19 @@ $rs = mysqli_query($conn, "SELECT * FROM product");
     <div class="collapse navbar-collapse  w-auto " id="sidenav-collapse-main">
       <ul class="navbar-nav">
         <li class="nav-item">
+          <a class="nav-link " href="../user/user.php">
+            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="fa fa-user me-sm-1-grid-58 text-warning text-sm opacity-10"></i>
+            </div>
+            <span class="nav-link-text ms-1 pt-1">User</span>
+          </a>
+        </li>
+        <li class="nav-item">
           <a class="nav-link " href="../category/category.php">
             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
               <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
             </div>
             <span class="nav-link-text ms-1">Category</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link " href="../user/user.php">
-            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="ni ni-calendar-grid-58 text-warning text-sm opacity-10"></i>
-            </div>
-            <span class="nav-link-text ms-1">User</span>
           </a>
         </li>
         <li class="nav-item">
@@ -113,7 +113,7 @@ $rs = mysqli_query($conn, "SELECT * FROM product");
     <?php include_once '../common/nav.php' ?>
     <div class="container-fluid py-4">
       <div class="row">
-        <div class="col-md-8 mt-4 mx-auto">
+        <div class="col-md-10 mt-4 mx-auto">
           <div class="card h-100 mb-4 pl-2">
             <table class="table-auto p-6 border-spacing-2 border border-slate-500 ...">
               <a class="py-2 font-weight-bolder" href="add.php">Add product</a>
