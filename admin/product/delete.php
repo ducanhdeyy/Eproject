@@ -8,5 +8,5 @@ if(isset($_GET['id']) && is_numeric($_GET['id'])){
     }
     mysqli_query($conn,"DELETE FROM product WHERE id=$id");
 }
-header('Location:list.php');
+header('Location:product.php');
 ?>

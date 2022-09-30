@@ -1,19 +1,19 @@
 <?php
 //kết nối vào CSDL 
-$conn = mysqli_connect('localhost','root','','fanofan');
+$conn = mysqli_connect('localhost', 'root', '', 'fanofan');
 if (!$conn) {
-    echo mysqli_connect_error();
+  echo mysqli_connect_error();
 }
 $categoryRS = mysqli_query($conn, "SELECT * FROM category");
 if (isset($_FILES['image']) && $_FILES['image']['name']) {
-    $duongDanAnh = 'uploads/'. time() . $_FILES['image']['name'];
-    move_uploaded_file($_FILES['image']['tmp_name'],$duongDanAnh);
-    $name = $_POST['name'];
-    $category_id = $_POST['category_id'];
-    $price = $_POST['price'];
-    $content = $_POST['content'];
-    mysqli_query($conn,"INSERT INTO product(name,price,content,image,category_id) VALUES('$name','$price','$content','$duongDanAnh','$category_id')");
-    echo mysqli_error($conn);
+  $duongDanAnh = 'uploads/' . time() . $_FILES['image']['name'];
+  move_uploaded_file($_FILES['image']['tmp_name'], $duongDanAnh);
+  $name = $_POST['name'];
+  $category_id = $_POST['category_id'];
+  $price = $_POST['price'];
+  $content = $_POST['content'];
+  mysqli_query($conn, "INSERT INTO product(name,price,content,image,category_id) VALUES('$name','$price','$content','$duongDanAnh','$category_id')");
+  echo mysqli_error($conn);
 }
 $rs = mysqli_query($conn, "SELECT *,product.id as product_id,product.name as product_name,category.name as category_name FROM product INNER JOIN category ON product.category_id=category.id");
 ?>
@@ -42,7 +42,7 @@ $rs = mysqli_query($conn, "SELECT *,product.id as product_id,product.name as pro
 <body class="g-sidenav-show   bg-gray-100">
   <div class="min-height-300 bg-primary position-absolute w-100"></div>
   <aside class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4 " id="sidenav-main">
-  <div class="sidenav-header">
+    <div class="sidenav-header">
       <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
       <a class="navbar-brand m-0" href="" target="_blank">
         <span class="ms-1 font-weight-bold text-3xl">FanoFan</span>
@@ -106,71 +106,43 @@ $rs = mysqli_query($conn, "SELECT *,product.id as product_id,product.name as pro
     </div>
   </aside>
   <main class="main-content position-relative border-radius-lg ">
-   <?php include_once'../common/nav.php' ?>
+    <?php include_once '../common/nav.php' ?>
     <div class="container-fluid py-4">
       <div class="row">
-        <div class="col-md-5 mt-4 mx-auto">
-          <div class="card h-100 mb-4 p-2">
-          <?php
-            if (isset($_SESSION['add-status'])) {
-                if ($_SESSION['add-status']['success'] == 1) {
-                    echo '<div class="alert alert-success" role="alert">
-                    ' . $_SESSION['add-status']['message'] . '
-                  </div>';
-                } else {
-                    echo '<div class="alert alert-danger" role="alert">
-                    ' . $_SESSION['add-status']['message'] . '
-                  </div>';
-                }
-                unset($_SESSION['add-status']);
-            }
-            ?>
-            <form method="post" enctype="multipart/form-data">
-                <div class="mx-3">
-                    <label for="name" class="form-label text-xl mt-4">Image</label>
-                    <input type="file" required class="form-control" name="image" id="image">
-                </div>
-
-
-                <div class="mx-3">
-                    <label for="name" class="form-label text-xl">Name</label>
-                    <input type="text" required class="form-control" name="name" id="name">
-                </div>
-
-                <div class="mx-3">
-                    <label for="price" class="form-label text-xl">Price</label>
-                    <input type="text" required class="form-control" name="price" id="price">
-                </div>
-
-
-                <div class="mx-3">
-                    <label for="category" class="form-label text-xl">Category</label>
-                    <select class="form-control" name="category_id" id="category">
-                        <?php foreach ($categoryList as $category) {
-                        ?>
-                            <option value="<?php echo $category->id; ?>"><?php echo $category->name; ?></option>
-                        <?php
-                        } ?>
-                    </select>
-                </div>
-
-
-                <div class="m-3">
-                    <label for="content" class="form-label text-xl">Content</label>
-                    <textarea class="form-control" name="content" id="content">
-
-                    </textarea>
-                </div>
-
-
-                <div>
-                    <button class="btn btn-primary mx-3">Add</button>
-                </div>
-            </form>
+        <div class="col-md-8 mt-4 mx-auto">
+          <div class="card h-100 mb-4 pl-2">
+            <table class="table-auto p-6 border-spacing-2 border border-slate-500 ...">
+              <a class="py-2 font-weight-bolder" href="add.php">Add product</a>
+              <thead>
+                <tr>
+                  <th class="text-center text-uppercase text-secondary text-sm font-weight-bolder">Id</th>
+                  <th class="text-center text-uppercase text-secondary text-sm font-weight-bolder">Name</th>
+                  <th class="text-center text-uppercase text-secondary text-sm font-weight-bolder">price</th>
+                  <th class="text-center text-uppercase text-secondary text-sm font-weight-bolder">content</th>
+                  <th class="text-center text-uppercase text-secondary text-sm font-weight-bolder">image</th>
+                  <th class="text-center text-uppercase text-secondary text-sm font-weight-bolder"></th>
+                </tr>
+              </thead>
+              <tbody>
+                <?php while ($product = mysqli_fetch_assoc($rs)) : ?>
+                  <tr>
+                    <td class="text-center"><?php echo $product['product_id']; ?></td>
+                    <td class="text-center"><?php echo $product['product_name']; ?></td>
+                    <td class="text-center"><?php echo $product['price']; ?></td>
+                    <td class="text-center"><?php echo $product['content']; ?></td>
+                    <td class="text-center"><img src="<?php echo $product['image']; ?>" alt=""></td>
+                    <td>
+                      <a class="text-secondary font-weight-bold text-sm p-1" href="delete.php?id=<?php echo $product['product_id']; ?>">delete</a>
+                      <a class="text-secondary font-weight-bold text-sm p-1" href="edit.php?id=<?php echo $product['product_id']; ?>">Edit</a>
+                    </td>
+                  <?php endwhile ?>
+                  </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
+        <?php include_once '../common/footer.php' ?>
       </div>
-      <?php include_once'../common/footer.php' ?>
-    </div>
   </main>
   <!--   Core JS Files   -->
   <script src="../assets/js/core/popper.min.js"></script>
