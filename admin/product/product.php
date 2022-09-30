@@ -165,3 +165,6 @@ $rs = mysqli_query($conn, "SELECT *,product.id as product_id,product.name as pro
 </body>
 
 </html>
+
+
+   
