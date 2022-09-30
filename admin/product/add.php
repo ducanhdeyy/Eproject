@@ -1,7 +1,7 @@
 <?php
 session_start();
-$dir = str_replace("admin\product", "", __DIR__); 
-require_once $dir . 'dals/ProductDAL.php'; 
+$dir = str_replace("admin\product", "", __DIR__);
+require_once $dir . 'dals/ProductDAL.php';
 require_once $dir . 'dals/CategoryDAL.php';
 
 $dal = new ProductDAL();
@@ -12,15 +12,23 @@ if (isset($_FILES['image']) && $_FILES['image']['name'] != null && isset($_POST[
     $relativeDir = '/uploads/' . $newDir;
     $newDir = $dir . $relativeDir;
     if (!file_exists($newDir) || is_file($newDir)) {
-    mkdir($newDir);
+        mkdir($newDir);
     }
+    // $newdir = 'uploads/' . date('m') . '/' . date('y'); //uploads/08/2022 -> tên thư mục  date('') hàm ngày tháng
+    // // nếu chưa tồn tại thư mục thì tiến hành tạo thư mục
+    // if (!file_exists($newdir) || is_file($newdir)) {
+    //     mkdir($newdir); // mkdir() là hàm tạo thư mục. => tạo thư mục uploads/08/2022
+    // }
+    // move_uploaded_file($_FILES['image']['tmp_name'], $newdir . time() . $_FILES['image']['name']);
+
+
     $imageName = time() . $_FILES['image']['name'];
     $fullImagePath = $newDir . '/' . $imageName;
     try {
         move_uploaded_file($_FILES['image']['tmp_name'], $fullImagePath);
         $data = $_POST;
         $data['image'] = $relativeDir . '/' . $imageName;
-        $data['content']=htmlentities($data['content']);
+        $data['content'] = htmlentities($data['content']);
         $checked = $dal->addOne($data);
         if ($checked) {
             $_SESSION['add-status'] = [
@@ -36,7 +44,7 @@ if (isset($_FILES['image']) && $_FILES['image']['name'] != null && isset($_POST[
     } catch (\Throwable $th) {
     }
 }
-    ?>
+?>
 <!DOCTYPE html>
 <html lang="en">
 

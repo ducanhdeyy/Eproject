@@ -4,18 +4,21 @@ $conn = mysqli_connect('localhost', 'root', '', 'fanofan');
 if (!$conn) {
   echo mysqli_connect_error();
 }
-$categoryRS = mysqli_query($conn, "SELECT * FROM category");
-if (isset($_FILES['image']) && $_FILES['image']['name']) {
-  $duongDanAnh = 'uploads/' . time() . $_FILES['image']['name'];
-  move_uploaded_file($_FILES['image']['tmp_name'], $duongDanAnh);
-  $name = $_POST['name'];
-  $category_id = $_POST['category_id'];
-  $price = $_POST['price'];
-  $content = $_POST['content'];
-  mysqli_query($conn, "INSERT INTO product(name,price,content,image,category_id) VALUES('$name','$price','$content','$duongDanAnh','$category_id')");
-  echo mysqli_error($conn);
-}
-$rs = mysqli_query($conn, "SELECT *,product.id as product_id,product.name as product_name,category.name as category_name FROM product INNER JOIN category ON product.category_id=category.id");
+// $categoryRS = mysqli_query($conn, "SELECT * FROM category");
+// if (isset($_FILES['image']) && $_FILES['image']['name']) {
+//   $duongDanAnh = 'uploads/' . time() . $_FILES['image']['name'];
+//   move_uploaded_file($_FILES['image']['tmp_name'], $duongDanAnh);
+//   $name = $_POST['name'];
+//   $category_id = $_POST['category_id'];
+//   $price = $_POST['price'];
+//   $content = $_POST['content'];
+//   mysqli_query($conn, "INSERT INTO product(name,price,content,image,category_id) VALUES('$name','$price','$content','$duongDanAnh','$category_id')");
+//   echo mysqli_error($conn);
+// }
+// $rs = mysqli_query($conn, "SELECT *,product.id as product_id,product.name as product_name,category.name as category_name FROM product INNER JOIN category ON product.category_id=category.id");
+// 
+$rs = mysqli_query($conn, "SELECT * FROM product");
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -126,14 +129,14 @@ $rs = mysqli_query($conn, "SELECT *,product.id as product_id,product.name as pro
               <tbody>
                 <?php while ($product = mysqli_fetch_assoc($rs)) : ?>
                   <tr>
-                    <td class="text-center"><?php echo $product['product_id']; ?></td>
-                    <td class="text-center"><?php echo $product['product_name']; ?></td>
+                    <td class="text-center"><?php echo $product['id']; ?></td>
+                    <td class="text-center"><?php echo $product['name']; ?></td>
                     <td class="text-center"><?php echo $product['price']; ?></td>
                     <td class="text-center"><?php echo $product['content']; ?></td>
-                    <td class="text-center"><img src="<?php echo $product['image']; ?>" alt=""></td>
+                    <td class="text-center"><img src="<?php echo $product['image']; ?>" alt="" width="50px"></td>
                     <td>
-                      <a class="text-secondary font-weight-bold text-sm p-1" href="delete.php?id=<?php echo $product['product_id']; ?>">delete</a>
-                      <a class="text-secondary font-weight-bold text-sm p-1" href="edit.php?id=<?php echo $product['product_id']; ?>">Edit</a>
+                      <a class="text-secondary font-weight-bold text-sm p-1" href="edit.php?id=<?php echo $product['id']; ?>">Edit</a>
+                      <a class="text-secondary font-weight-bold text-sm p-1" href="delete.php?id=<?php echo $product['id']; ?>" onclick=" return confirm('Bạn thật sự muốn xóa ?') ">Delete</a>
                     </td>
                   <?php endwhile ?>
                   </tr>
@@ -165,6 +168,3 @@ $rs = mysqli_query($conn, "SELECT *,product.id as product_id,product.name as pro
 </body>
 
 </html>
-
-
-   

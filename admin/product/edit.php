@@ -4,14 +4,19 @@ $connect = mysqli_connect('localhost', 'root', '', 'fanofan');
 if (!$connect) {
   die("Connect Failed") . mysqli_connect_error(); //in ra thông báo lỗi và dừng chương trình
 }
-$id = $_GET['id'];
-if (isset($_POST['name'])) {
+
+if (isset($_GET['id']) && is_numeric($_GET['id'])) {
+  $id = $_GET['id'];
+} else header('Location:product.php');
+
+if (isset($_FILES['image']) && $_FILES['image']['name']) {
+  $duongDanAnh = 'uploads/' . time() . $_FILES['image']['name'];
+  move_uploaded_file($_FILES['image']['tmp_name'], $duongDanAnh);
   $name = $_POST['name'];
   $price  = $_POST['price'];
   $content = $_POST['content'];
   $category_id = $_POST['category_id'];
-  $image = $_POST['image'];
-  $sql = "UPDATE product SET name='$name',price='$price',content='$content',category_id='$category_id',image = '$image' WHERE id=$id";
+  $sql = "UPDATE product SET name='$name',price='$price',content='$content',category_id='$category_id',image = '$duongDanAnh' WHERE id=$id";
   mysqli_query($connect, $sql);
 }
 
@@ -20,6 +25,9 @@ $results = mysqli_query($connect, $sql);
 if (mysqli_num_rows($results) == 1) {
   $obj = mysqli_fetch_assoc($results);
 }
+
+$categoryRS = mysqli_query($connect, "SELECT * FROM category");
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -115,29 +123,48 @@ if (mysqli_num_rows($results) == 1) {
       <div class="row">
         <div class="col-md-7 mt-4 mx-auto">
           <div class="card h-100 mb-4 p-2">
-            <form method="POST">
-              <div>
-                <label for="">Tên quạt</label>
-                <input type="text" name="name" placeholder="Name" value="<?php echo $obj['name']; ?>" />
-              </div>
-              <div>
-                <label for="">nhập giá</label>
-                <input type="text" name="price" placeholder="Price" value="<?php echo $obj['price']; ?>" />
+            <form method="post" enctype="multipart/form-data">
+              <div class="mb-2">
+                <label for="name" class="form-label">Image</label>
+                <input type="file" required class="form-control" name="image" id="image">
+                <img src="<?php echo $obj['image']; ?>" width="50px" />
               </div>
 
-              <div>
-                <label for="">Mô tả</label>
-                <textarea name="content" placeholder="content"><?php echo $obj['content']; ?></textarea>
-              </div>
-              <div>
-                <label>category_id</label>
-                <input type="text" name="category_id" placeholder="category_id" value="<?php echo $obj['category_id'] ?>">
-              </div>
-              <div>
-                <input type="file" name="image" placeholder="image" value="<?php echo $obj['image']; ?>" />
+
+              <div class="mb-2">
+                <label for="name" class="form-label">Name</label>
+                <input type="text" required class="form-control" name="name" id="name" value="<?php echo $obj['name']; ?>">
               </div>
 
-              <button>update</button>
+              <div class="mb-2">
+                <label for="price" class="form-label">Price</label>
+                <input type="text" required class="form-control" name="price" id="price" value="<?php echo $obj['price']; ?>">
+              </div>
+
+
+              <div class="mb-2">
+                <label for="category" class="form-label">Category</label>
+                <select class="form-control" name="category_id" id="category">
+                  <?php while ($category = mysqli_fetch_assoc($categoryRS)) : ?>
+
+                    <option value="<?php echo $category['id']; ?>" <?php if ($category['id'] == $obj['category_id']) {
+                                                                      echo 'selected = "selected"';
+                                                                    } ?>> <?php echo $category['name']; ?> </option>
+                  <?php endwhile ?>
+                </select>
+              </div>
+
+
+              <div class="mb-3">
+                <label for="content" class="form-label">Content</label>
+                <textarea class="form-control" name="content" id="content"> <?php echo $obj['content']; ?> </textarea>
+              </div>
+
+
+              <div>
+                <button class="btn btn-primary">Edit</button>
+              </div>
+            </form>
           </div>
         </div>
         <?php include_once '../common/footer.php' ?>
