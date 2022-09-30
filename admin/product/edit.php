@@ -115,29 +115,32 @@ if (mysqli_num_rows($results) == 1) {
       <div class="row">
         <div class="col-md-7 mt-4 mx-auto">
           <div class="card h-100 mb-4 p-2">
-            <form method="POST">
-              <div>
-                <label for="">Tên quạt</label>
-                <input type="text" name="name" placeholder="Name" value="<?php echo $obj['name']; ?>" />
-              </div>
-              <div>
-                <label for="">nhập giá</label>
-                <input type="text" name="price" placeholder="Price" value="<?php echo $obj['price']; ?>" />
-              </div>
-
-              <div>
-                <label for="">Mô tả</label>
-                <textarea name="content" placeholder="content"><?php echo $obj['content']; ?></textarea>
-              </div>
-              <div>
-                <label>category_id</label>
-                <input type="text" name="category_id" placeholder="category_id" value="<?php echo $obj['category_id'] ?>">
-              </div>
-              <div>
-                <input type="file" name="image" placeholder="image" value="<?php echo $obj['image']; ?>" />
-              </div>
-
-              <button>update</button>
+          <form method="post" enctype="multipart/form-data">
+                            <div class="mb-2">
+                                <label for="name" class="form-label">Image</label>
+                                <input type="file" required class="form-control" name="image" id="image" value="<?php echo $obj['image'] ?>">
+                            </div>
+                            <div class="mb-2">
+                                <label for="name" class="form-label">Name</label>
+                                <input type="text" required class="form-control" name="name" id="name" value="<?php echo $obj['name'] ?>">
+                            </div>
+                            <div class="mb-2">
+                                <label for="price" class="form-label">Price</label>
+                                <input type="text" required class="form-control" name="price" id="price" value="<?php echo $obj['price'] ?>">
+                            </div>
+                            <div class="mb-2">
+                                <label for="category" class="form-label">category_id</label>
+                                <input type="text" name="category_id" value="<?php echo $obj['category_id'] ?>">
+                            </div>
+                            <div class="mb-3">
+                                <label for="content" class="form-label">Content</label>
+                                <textarea class="form-control" name="content" id="content" value="<?php echo $obj['content'] ?>">
+                            </textarea>
+                            </div>
+                            <div>
+                                <button class="btn btn-primary">Update</button>
+                            </div>
+                        </form>
           </div>
         </div>
         <?php include_once '../common/footer.php' ?>

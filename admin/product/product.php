@@ -1,6 +1,5 @@
 <?php
-//kết nối vào CSDL 
-$conn = mysqli_connect('localhost', 'root', '', 'fanofan');
+$conn = mysqli_connect('localhost','root','','fanofan');
 if (!$conn) {
   echo mysqli_connect_error();
 }
