@@ -43,19 +43,19 @@ $list = $dal->getList();
     <div class="collapse navbar-collapse  w-auto " id="sidenav-collapse-main">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link active" href="../category/category.php">
-            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
-            </div>
-            <span class="nav-link-text ms-1">Category</span>
-          </a>
-        </li>
-        <li class="nav-item">
           <a class="nav-link " href="../user/user.php">
             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
               <i class="fa fa-user me-sm-1-grid-58 text-warning text-sm opacity-10"></i>
             </div>
             <span class="nav-link-text ms-1 pt-1">User</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" href="../category/category.php">
+            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
+            </div>
+            <span class="nav-link-text ms-1">Category</span>
           </a>
         </li>
         <li class="nav-item">
@@ -100,13 +100,13 @@ $list = $dal->getList();
     <?php include_once '../common/nav.php' ?>
     <div class="container-fluid py-4">
       <div class="row">
-        <div class="col-md-5 mt-4 mx-auto">
+        <div class="col-md-6 mt-4 mx-auto">
           <div class="card h-100 mb-4 p-2">
-            <table class="table">
-              <a href="add.php">Add category</a>
+            <table class="table ">
+              <a href="add.php">Add Category</a>
               <thead>
                 <tr>
-                  <th class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7" scope="col"></th>
+                  <th class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7" scope="col">Id </th>
                   <th class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7" scope="col">Name</th>
                   <th class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7" scope="col">Action</th>
                 </tr>
@@ -117,6 +117,10 @@ $list = $dal->getList();
                     <th class="text-center" scope="row"><?php echo $r->id; ?></th>
                     <td class="text-center"><?php echo $r->name; ?></td>
                     <td class="text-center">
+<<<<<<< HEAD
+=======
+                      <!-- <a class="text-secondary font-weight-bold text-xs p-1" href="edit.php?id=<?php echo $r->id; ?>">Edit</a> -->
+>>>>>>> 7d6eeb8361999a998a46d2fb9f0499d7a9e79914
                       <a onclick="return confirm('Are you sure you want to delete ?')" class="text-secondary font-weight-bold text-xs p-1" href="?action=delete&id=<?php echo $r->id; ?>">Delete</a>
                     </td>
                   </tr>

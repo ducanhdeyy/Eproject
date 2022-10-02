@@ -4,6 +4,7 @@ $conn = mysqli_connect('localhost', 'root', '', 'fanofan');
 if (!$conn) {
   echo mysqli_connect_error();
 }
+<<<<<<< HEAD
 $categoryRS = mysqli_query($conn, "SELECT * FROM category");
 if (isset($_FILES['image']) && $_FILES['image']['name']) {
   $duongDanAnh = 'uploads/' . time() . $_FILES['image']['name'];
@@ -16,6 +17,20 @@ if (isset($_FILES['image']) && $_FILES['image']['name']) {
   echo mysqli_error($conn);
 }
 $rs = mysqli_query($conn, "SELECT *,product.id as product_id,product.name as product_name,category.name as category_name FROM product INNER JOIN category ON product.category_id=category.id");
+=======
+// $categoryRS = mysqli_query($conn, "SELECT * FROM category");
+// if (isset($_FILES['image']) && $_FILES['image']['name']) {
+//   $duongDanAnh = 'uploads/' . time() . $_FILES['image']['name'];
+//   move_uploaded_file($_FILES['image']['tmp_name'], $duongDanAnh);
+//   $name = $_POST['name'];
+//   $category_id = $_POST['category_id'];
+//   $price = $_POST['price'];
+//   $content = $_POST['content'];
+//   mysqli_query($conn, "INSERT INTO product(name,price,content,image,category_id) VALUES('$name','$price','$content','$duongDanAnh','$category_id')");
+//   echo mysqli_error($conn);
+// }
+// $rs = mysqli_query($conn, "SELECT *,product.id as product_id,product.name as product_name,category.name as category_name FROM product INNER JOIN category ON product.category_id=category.id");
+>>>>>>> 7d6eeb8361999a998a46d2fb9f0499d7a9e79914
 
 $rs = mysqli_query($conn, "SELECT * FROM product");
 
@@ -55,19 +70,19 @@ $rs = mysqli_query($conn, "SELECT * FROM product");
     <div class="collapse navbar-collapse  w-auto " id="sidenav-collapse-main">
       <ul class="navbar-nav">
         <li class="nav-item">
+          <a class="nav-link " href="../user/user.php">
+            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="fa fa-user me-sm-1-grid-58 text-warning text-sm opacity-10"></i>
+            </div>
+            <span class="nav-link-text ms-1 pt-1">User</span>
+          </a>
+        </li>
+        <li class="nav-item">
           <a class="nav-link " href="../category/category.php">
             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
               <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
             </div>
             <span class="nav-link-text ms-1">Category</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link " href="../user/user.php">
-            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="ni ni-calendar-grid-58 text-warning text-sm opacity-10"></i>
-            </div>
-            <span class="nav-link-text ms-1">User</span>
           </a>
         </li>
         <li class="nav-item">
@@ -112,7 +127,7 @@ $rs = mysqli_query($conn, "SELECT * FROM product");
     <?php include_once '../common/nav.php' ?>
     <div class="container-fluid py-4">
       <div class="row">
-        <div class="col-md-8 mt-4 mx-auto">
+        <div class="col-md-10 mt-4 mx-auto">
           <div class="card h-100 mb-4 pl-2">
             <table class="table-auto p-6 border-spacing-2 border border-slate-500 ...">
               <a class="py-2 font-weight-bolder" href="add.php">Add product</a>
