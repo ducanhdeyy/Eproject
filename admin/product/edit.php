@@ -1,17 +1,22 @@
 <?php
-//kết nối vào mysql server 
+require_once('./../../config.php');
 $connect = mysqli_connect('localhost', 'root', '', 'fanofan');
 if (!$connect) {
   die("Connect Failed") . mysqli_connect_error(); //in ra thông báo lỗi và dừng chương trình
 }
-$id = $_GET['id'];
-if (isset($_POST['name'])) {
+
+if (isset($_GET['id']) && is_numeric($_GET['id'])) {
+  $id = $_GET['id'];
+} else header('Location:product.php');
+
+if (isset($_FILES['image']) && $_FILES['image']['name']) {
+  $duongDanAnh = 'uploads/' . time() . $_FILES['image']['name'];
+  move_uploaded_file($_FILES['image']['tmp_name'], $duongDanAnh);
   $name = $_POST['name'];
   $price  = $_POST['price'];
   $content = $_POST['content'];
   $category_id = $_POST['category_id'];
-  $image = $_POST['image'];
-  $sql = "UPDATE product SET name='$name',price='$price',content='$content',category_id='$category_id',image = '$image' WHERE id=$id";
+  $sql = "UPDATE product SET name='$name',price='$price',content='$content',category_id='$category_id',image = '$duongDanAnh' WHERE id=$id";
   mysqli_query($connect, $sql);
 }
 
@@ -20,6 +25,9 @@ $results = mysqli_query($connect, $sql);
 if (mysqli_num_rows($results) == 1) {
   $obj = mysqli_fetch_assoc($results);
 }
+
+$categoryRS = mysqli_query($connect, "SELECT * FROM category");
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -115,32 +123,46 @@ if (mysqli_num_rows($results) == 1) {
       <div class="row">
         <div class="col-md-7 mt-4 mx-auto">
           <div class="card h-100 mb-4 p-2">
-          <form method="post" enctype="multipart/form-data">
-                            <div class="mb-2">
-                                <label for="name" class="form-label">Image</label>
-                                <input type="file" required class="form-control" name="image" id="image" value="<?php echo $obj['image'] ?>">
-                            </div>
-                            <div class="mb-2">
-                                <label for="name" class="form-label">Name</label>
-                                <input type="text" required class="form-control" name="name" id="name" value="<?php echo $obj['name'] ?>">
-                            </div>
-                            <div class="mb-2">
-                                <label for="price" class="form-label">Price</label>
-                                <input type="text" required class="form-control" name="price" id="price" value="<?php echo $obj['price'] ?>">
-                            </div>
-                            <div class="mb-2">
-                                <label for="category" class="form-label">category_id</label>
-                                <input type="text" name="category_id" value="<?php echo $obj['category_id'] ?>">
-                            </div>
-                            <div class="mb-3">
-                                <label for="content" class="form-label">Content</label>
-                                <textarea class="form-control" name="content" id="content" value="<?php echo $obj['content'] ?>">
-                            </textarea>
-                            </div>
-                            <div>
-                                <button class="btn btn-primary">Update</button>
-                            </div>
-                        </form>
+            <form method="post" enctype="multipart/form-data">
+              <div class="mb-2">
+                <label for="name" class="form-label">Image</label>
+                <input type="file" required class="form-control" name="image" id="image">
+                <img src="<?php echo BASE_URL . $obj['image']; ?>" width="50" />
+              </div>
+              <div class="mb-2">
+                <label for="name" class="form-label">Name</label>
+                <input type="text" required class="form-control" name="name" id="name" value="<?php echo $obj['name']; ?>">
+              </div>
+
+              <div class="mb-2">
+                <label for="price" class="form-label">Price</label>
+                <input type="text" required class="form-control" name="price" id="price" value="<?php echo $obj['price']; ?>">
+              </div>
+
+
+              <div class="mb-2">
+                <label for="category" class="form-label">Category</label>
+                <select class="form-control" name="category_id" id="category">
+                  <?php while ($category = mysqli_fetch_assoc($categoryRS)) : ?>
+
+                    <option value="<?php echo $category['id']; ?>" <?php if ($category['id'] == $obj['category_id']) {
+                                                                      echo 'selected = "selected"';
+                                                                    } ?>> <?php echo $category['name']; ?> </option>
+                  <?php endwhile ?>
+                </select>
+              </div>
+
+
+              <div class="mb-3">
+                <label for="content" class="form-label">Content</label>
+                <textarea class="form-control" name="content" id="content"> <?php echo $obj['content']; ?> </textarea>
+              </div>
+
+
+              <div>
+                <button class="btn btn-primary">Edit</button>
+              </div>
+            </form>
           </div>
         </div>
         <?php include_once '../common/footer.php' ?>

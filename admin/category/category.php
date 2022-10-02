@@ -1,16 +1,16 @@
-<?php 
- //echo __DIR__; //C:\xampp\htdocs\shops\admin\user
- $dir = str_replace("admin\category","",__DIR__);//C:\xampp\htdocs\shops\
- require_once $dir.'dals/CategoryDAL.php';//relative C:\xampp\htdocs\shops\UserDAL.php -> tuyet doi
- $dal = new CategoryDAL();
- if(isset($_GET['action'])){
-    $id = $_GET['id'];
-   
-    if(is_numeric($id) && $_GET['action']=='delete'){
-        $dal->deleteOne($id);
-    }
- }
- $list = $dal->getList();
+<?php
+//echo __DIR__; //C:\xampp\htdocs\shops\admin\user
+$dir = str_replace("admin\category", "", __DIR__); //C:\xampp\htdocs\shops\
+require_once $dir . 'dals/CategoryDAL.php'; //relative C:\xampp\htdocs\shops\UserDAL.php -> tuyet doi
+$dal = new CategoryDAL();
+if (isset($_GET['action'])) {
+  $id = $_GET['id'];
+
+  if (is_numeric($id) && $_GET['action'] == 'delete') {
+    $dal->deleteOne($id);
+  }
+}
+$list = $dal->getList();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -97,40 +97,39 @@
     </div>
   </aside>
   <main class="main-content position-relative border-radius-lg ">
-  <?php include_once'../common/nav.php' ?>
+    <?php include_once '../common/nav.php' ?>
     <div class="container-fluid py-4">
       <div class="row">
-      <div class="col-md-5 mt-4 mx-auto">
+        <div class="col-md-5 mt-4 mx-auto">
           <div class="card h-100 mb-4 p-2">
-          <table class="table">
-            <a href="add.php">Add category</a>
-                <thead>
-                    <tr>
-                        <th class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7" scope="col"></th>
-                        <th class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7" scope="col">Name</th>
-                        <th class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7" scope="col">Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php foreach($list as $r): ?>
-                    <tr>
-                        <th class="text-center" scope="row"><?php echo $r->id; ?></th>
-                        <td class="text-center"><?php echo $r->name; ?></td>
-                        <td class="text-center">
-                            <a class="text-secondary font-weight-bold text-xs p-1" href="edit.php?id=<?php echo $r->id; ?>">Edit</a>
-                            <a onclick="return confirm('Are you sure you want to delete ?')" class="text-secondary font-weight-bold text-xs p-1" href="?action=delete&id=<?php echo $r->id; ?>">Delete</a>
-                        </td>
-                    </tr>
-                    <?php endforeach?>
-                </tbody>
+            <table class="table">
+              <a href="add.php">Add category</a>
+              <thead>
+                <tr>
+                  <th class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7" scope="col"></th>
+                  <th class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7" scope="col">Name</th>
+                  <th class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7" scope="col">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <?php foreach ($list as $r) : ?>
+                  <tr>
+                    <th class="text-center" scope="row"><?php echo $r->id; ?></th>
+                    <td class="text-center"><?php echo $r->name; ?></td>
+                    <td class="text-center">
+                      <a onclick="return confirm('Are you sure you want to delete ?')" class="text-secondary font-weight-bold text-xs p-1" href="?action=delete&id=<?php echo $r->id; ?>">Delete</a>
+                    </td>
+                  </tr>
+                <?php endforeach ?>
+              </tbody>
             </table>
+          </div>
         </div>
+        <div class="row mt-4">
+
+        </div>
+        <?php include_once '../common/footer.php' ?>
       </div>
-      <div class="row mt-4">
-        
-      </div>
-      <?php include_once'../common/footer.php' ?>
-    </div>
   </main>
 </body>
 

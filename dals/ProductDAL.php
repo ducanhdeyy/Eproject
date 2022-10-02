@@ -8,13 +8,13 @@
     }
 
     public function getList(){
-       $sql = "SELECT *,products.name as product_name,products.id as product_id,category.name as category_name FROM $this->tableName LEFT JOIN category ON products.category_id = category.id";
+       $sql = "SELECT *,product.name as product_name,product.id as product_id,category.name as category_name FROM $this->tableName LEFT JOIN category ON product.category_id = category.id";
        $rs = $this->pdo->query($sql);  
        return $rs->fetchAll(PDO::FETCH_OBJ);   
     }
 
     public function getListByCategoryId($categoryId,$limit=4){
-        $sql = "SELECT *,products.name as product_name,products.id as product_id,category.name as category_name FROM $this->tableName LEFT JOIN category ON products.category_id = category.id where products.category_id=$categoryId LIMIT 4";
+        $sql = "SELECT *,product.name as product_name,product.id as product_id,category.name as category_name FROM $this->tableName LEFT JOIN category ON product.category_id = category.id where product.category_id=$categoryId LIMIT 4";
         $rs = $this->pdo->query($sql);  
         return $rs->fetchAll(PDO::FETCH_OBJ);   
     }
@@ -45,10 +45,8 @@
     public function deleteOne($id){
     
         try {
-            //code...
             $this->pdo->query("DELETE FROM $this->tableName WHERE id=$id");    
         } catch (\Throwable $th) {
-            //throw $th;
             echo $th->getMessage();
         }
      

@@ -1,5 +1,6 @@
 <?php
-$conn = mysqli_connect('localhost','root','','fanofan');
+require_once('./../../config.php');
+$conn = mysqli_connect('localhost', 'root', '', 'fanofan');
 if (!$conn) {
   echo mysqli_connect_error();
 }
@@ -15,6 +16,9 @@ if (isset($_FILES['image']) && $_FILES['image']['name']) {
   echo mysqli_error($conn);
 }
 $rs = mysqli_query($conn, "SELECT *,product.id as product_id,product.name as product_name,category.name as category_name FROM product INNER JOIN category ON product.category_id=category.id");
+
+$rs = mysqli_query($conn, "SELECT * FROM product");
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -114,25 +118,25 @@ $rs = mysqli_query($conn, "SELECT *,product.id as product_id,product.name as pro
               <a class="py-2 font-weight-bolder" href="add.php">Add product</a>
               <thead>
                 <tr>
-                  <th class="text-center text-uppercase text-secondary text-sm font-weight-bolder">Id</th>
+                  <th class="text-center text-uppercase text-secondary text-sm font-weight-bolder"></th>
                   <th class="text-center text-uppercase text-secondary text-sm font-weight-bolder">Name</th>
                   <th class="text-center text-uppercase text-secondary text-sm font-weight-bolder">price</th>
                   <th class="text-center text-uppercase text-secondary text-sm font-weight-bolder">content</th>
                   <th class="text-center text-uppercase text-secondary text-sm font-weight-bolder">image</th>
-                  <th class="text-center text-uppercase text-secondary text-sm font-weight-bolder"></th>
+                  <th class="text-center text-uppercase text-secondary text-sm font-weight-bolder"> Action</th>
                 </tr>
               </thead>
               <tbody>
                 <?php while ($product = mysqli_fetch_assoc($rs)) : ?>
                   <tr>
-                    <td class="text-center"><?php echo $product['product_id']; ?></td>
-                    <td class="text-center"><?php echo $product['product_name']; ?></td>
+                    <td class="text-center"><?php echo $product['id']; ?></td>
+                    <td class="text-center"><?php echo $product['name']; ?></td>
                     <td class="text-center"><?php echo $product['price']; ?></td>
                     <td class="text-center"><?php echo $product['content']; ?></td>
-                    <td class="text-center"><img src="<?php echo $product['image']; ?>" alt=""></td>
-                    <td>
-                      <a class="text-secondary font-weight-bold text-sm p-1" href="delete.php?id=<?php echo $product['product_id']; ?>">delete</a>
-                      <a class="text-secondary font-weight-bold text-sm p-1" href="edit.php?id=<?php echo $product['product_id']; ?>">Edit</a>
+                    <td class="text-center"><img src="<?php echo BASE_URL . $product['image']; ?>" alt="" width="50"></td>
+                    <td class="action">
+                      <a class="text-secondary font-weight-bold text-sm p-1" href="edit.php?id=<?php echo $product['id']; ?>">Edit</a>
+                      <a class="text-secondary font-weight-bold text-sm p-1" href="delete.php?id=<?php echo $product['id']; ?>" onclick=" return confirm('Bạn thật sự muốn xóa ?') ">Delete</a>
                     </td>
                   <?php endwhile ?>
                   </tr>
@@ -142,6 +146,11 @@ $rs = mysqli_query($conn, "SELECT *,product.id as product_id,product.name as pro
         </div>
         <?php include_once '../common/footer.php' ?>
       </div>
+      <style>
+        .action {
+          text-align: center;
+        }
+      </style>
   </main>
   <!--   Core JS Files   -->
   <script src="../assets/js/core/popper.min.js"></script>
@@ -164,6 +173,3 @@ $rs = mysqli_query($conn, "SELECT *,product.id as product_id,product.name as pro
 </body>
 
 </html>
-
-
-   
