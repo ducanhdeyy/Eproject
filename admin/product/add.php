@@ -14,14 +14,6 @@ if (isset($_FILES['image']) && $_FILES['image']['name'] != null && isset($_POST[
     if (!file_exists($newDir) || is_file($newDir)) {
         mkdir($newDir);
     }
-    // $newdir = 'uploads/' . date('m') . '/' . date('y'); //uploads/08/2022 -> tên thư mục  date('') hàm ngày tháng
-    // // nếu chưa tồn tại thư mục thì tiến hành tạo thư mục
-    // if (!file_exists($newdir) || is_file($newdir)) {
-    //     mkdir($newdir); // mkdir() là hàm tạo thư mục. => tạo thư mục uploads/08/2022
-    // }
-    // move_uploaded_file($_FILES['image']['tmp_name'], $newdir . time() . $_FILES['image']['name']);
-
-
     $imageName = time() . $_FILES['image']['name'];
     $fullImagePath = $newDir . '/' . $imageName;
     try {

@@ -1,3 +1,17 @@
+<?php
+require_once "config.php";
+require_once "Utils.php";
+if(!isset($_GET['id']) && is_numeric($_GET['id'])){
+    header("location:index.php");
+}
+$id = $_GET['id'];
+$conn = mysqli_connect('localhost','root','','fanofan');
+if(!$conn){
+    echo mysqli_connect_error();
+}
+$rs = mysqli_query($conn, "SELECT *FROM product WHERE id=$id");
+$product = mysqli_fetch_assoc($rs);
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,7 +23,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
         integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-    <link rel="stylesheet" href="../assets/base.css">
+    <link rel="stylesheet" href="../Eprojects/assets/base.css">
 </head>
 
 <body>
@@ -20,23 +34,23 @@
             <nav class="flex justify-between items-center py-5 lg:pl-40 px-2">
                 <!-- logo -->
                 <div style="height: 35px; width: 138px;" class="w-32 lg:w-full z-20">
-                    <a href="home.html"><img
+                    <a href="index.php"><img
                             src="https://hieu-icetea.github.io/T1909M_FANoFAN/img/logo-fanofan-color.png" alt=""></a>
                 </div>
                 <!-- link -->
                 <ul id="menu" class="invisible fixed z-20 top-0 left-0 w-full h-screen flex flex-col justify-center items-center bg-gray-900 bg-opacity-90 md:bg-transparent md:h-auto md:flex-row md:justify-around md:static
                     md:visible">
-                    <li class="m-12 md:m-0"><a href="home.html"
+                    <li class="m-12 md:m-0"><a href="index.php"
                             class="text-white md:text-black hover:text-red-500">Home</a>
                     </li>
-                    <li class="m-12 md:m-0"><a href="products-category.html"
+                    <li class="m-12 md:m-0"><a href="product.php"
                             class="text-white md:text-black hover:text-red-500">Product</a></li>
-                            <li class="m-12 lg:m-0"><a href="about.html"
+                            <li class="m-12 lg:m-0"><a href="about.php"
                                 class="text-white md:text-black hover:text-red-500">About</a></li>
                     <button class="m-12 md:m-0 text-white md:text-black hover:text-red-500"><a
-                            href="signup.html">Signup</a></button>
+                            href="signup.php">Signup</a></button>
                     <button class="m-12 md:m-0 text-white md:text-black hover:text-red-500""><a href="
-                        login.html">Login</a> </button>
+                        login.php">Login</a> </button>
                 </ul>
                 <!-- menu botton -->
                 <div id="menu-button" class="z-20 md:hidden cursor-pointer">
@@ -53,12 +67,11 @@
 
     <div class="grid lg:grid-cols-2 grid-cols-1 gap-4">
         <div>
-            <img src="../img/ceiling-fans-1.jpg" alt="">
+            <img src="<?php echo BASE_URL . $product['image'] ?>" alt="">
             <div class="grid grid-cols-3 gap-4">
-                <img src="../img/ceiling-fans-1.jpg" alt="">
-                <img src="../img/ceiling-fans-1.jpg" alt="">
-                <img src="../img/ceiling-fans-1.jpg" alt="">
-
+                <img src="<?php echo BASE_URL .  $product['image'] ?>" alt="">
+                <img src="<?php echo BASE_URL .  $product['image'] ?>" alt="">
+                <img src="<?php echo BASE_URL .  $product['image'] ?>" alt="">
             </div>
         </div>
 
@@ -112,8 +125,7 @@
                 </p>
             </div>
             <div>
-                <p class="line-through text-xl">1.789 $</p>
-                <p class="ml-16 text-2xl text-red-600">1.089 $</p>
+                <p class="ml-16 text-2xl text-red-600"><?php echo Utils::formatMoney($product['price']) ?></p>
             </div>
             <div class="container__product-item-source my-6">
                 <a href=""
@@ -216,11 +228,6 @@
 
                 </tbody>
             </table>
-            <div class="container__product-item-source mt-7">
-                <a href=""
-                    class="border border-inherit bg-slate-900 text-white px-4 py-2 rounded-md hover:bg-red-500 hover:border-transparent  justify-between items-center"><i
-                        class="fa fa-download" aria-hidden="true"></i> Download product document</a>
-            </div>
             <hr class="mt-7">
             <h4 class="mt-7 font-bold text-3xl">CUSTOMER REVIEW</h4>
             <hr class="mt-3">
@@ -319,53 +326,29 @@
         </div>
         <div class="w-96">
             <h2 class="text-3xl font-bold mb-3">Related products</h2>
+            <?php foreach($rs as $product): ?>
             <div class="relative block mt-4 rounded-sm bg-white shadow-lg shadow-indigo-500/40 ... transition-transform hover:translate-y-1">
                 <div>
-                    <img class="bg-no-repeat bg-contain bg-top-center rounded-t-sm" src="../img/ceiling-fans-1.jpg"
+                    <img class="bg-no-repeat bg-contain bg-top-center rounded-t-sm" src="<?php echo BASE_URL . $product['image'] ?>"
                         alt="">
                 </div>
                 <div>
-                    <h4 class="m-1 mb-1 text-xl font-semibold leading-7 h-14 text-black">Dyson Air Multiplier</h4>
-                    <p class="m-1 mb-1 text-xl font-semibold leading-7 h-14 text-black block">Create a powerful
-                        stream of uninterrupted
-                        airflow</p>
+                    <h4 class="m-1 mb-1 text-xl font-semibold leading-7 h-14 text-black"><?php echo  $product['name'] ?></h4>
+                    <p class="m-1 mb-1 text-xl font-semibold leading-7 h-14 text-black block"><?php echo  $product['content'] ?></p>
                     <div class="flex items-baseline flex-wrap my-0 mx-2">
-                        <span class="text-red-600 text-2xl mt-1">1.119 $</span>
+                        <span class="text-red-600 text-2xl mt-1"><?php echo Utils::formatMoney($product['price'])  ?></span>
                     </div>
                     <div class="text-lg flex pb-2 pt-2 px-2 font-light text-gray-500">
                         <a href=""
                             class="border border-inherit bg-slate-900 text-white px-3 py-1 rounded-md hover:bg-red-500 hover:border-transparent  justify-between items-center"><i
                                 class="fa fa-cart-plus" aria-hidden="true"></i></a>
-                        <a href="details.html"
+                        <a href="detail.php"
                             class="border border-inherit bg-slate-900 text-white px-3 py-1 rounded-md hover:bg-red-500 hover:border-transparent  justify-between items-center ml-2">Show
                             more</a>
                     </div>
                 </div>
             </div>
-            <div class="relative block mt-4 rounded-sm bg-white shadow-lg shadow-indigo-500/40 ... transition-transform hover:translate-y-1">
-                <div>
-                    <img class="bg-no-repeat bg-contain bg-top-center rounded-t-sm" src="../img/ceiling-fans-1.jpg"
-                        alt="">
-                </div>
-                <div>
-                    <h4 class="m-1 mb-1 text-xl font-semibold leading-7 h-14 text-black">Dyson Air Multiplier</h4>
-                    <p class="m-1 mb-1 text-xl font-semibold leading-7 h-14 text-black block">Create a powerful
-                        stream of uninterrupted
-                        airflow</p>
-                    <div class="flex items-baseline flex-wrap my-0 mx-2">
-                        <span class="text-red-600 text-2xl mt-1">1.119 $</span>
-                    </div>
-                    <div class="text-lg flex pb-2 pt-2 px-2 font-light text-gray-500">
-                        <a href=""
-                            class="border border-inherit bg-slate-900 text-white px-3 py-1 rounded-md hover:bg-red-500 hover:border-transparent  justify-between items-center"><i
-                                class="fa fa-cart-plus" aria-hidden="true"></i></a>
-                        <a href="details.html"
-                            class="border border-inherit bg-slate-900 text-white px-3 py-1 rounded-md hover:bg-red-500 hover:border-transparent  justify-between items-center ml-2">Show
-                            more</a>
-                    </div>
-                </div>
-            </div>
-            
+            <?php endforeach ?>
         </div>
         
 

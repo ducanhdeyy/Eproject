@@ -4,7 +4,6 @@ $conn = mysqli_connect('localhost', 'root', '', 'fanofan');
 if (!$conn) {
   echo mysqli_connect_error();
 }
-<<<<<<< HEAD
 $categoryRS = mysqli_query($conn, "SELECT * FROM category");
 if (isset($_FILES['image']) && $_FILES['image']['name']) {
   $duongDanAnh = 'uploads/' . time() . $_FILES['image']['name'];
@@ -17,20 +16,6 @@ if (isset($_FILES['image']) && $_FILES['image']['name']) {
   echo mysqli_error($conn);
 }
 $rs = mysqli_query($conn, "SELECT *,product.id as product_id,product.name as product_name,category.name as category_name FROM product INNER JOIN category ON product.category_id=category.id");
-=======
-// $categoryRS = mysqli_query($conn, "SELECT * FROM category");
-// if (isset($_FILES['image']) && $_FILES['image']['name']) {
-//   $duongDanAnh = 'uploads/' . time() . $_FILES['image']['name'];
-//   move_uploaded_file($_FILES['image']['tmp_name'], $duongDanAnh);
-//   $name = $_POST['name'];
-//   $category_id = $_POST['category_id'];
-//   $price = $_POST['price'];
-//   $content = $_POST['content'];
-//   mysqli_query($conn, "INSERT INTO product(name,price,content,image,category_id) VALUES('$name','$price','$content','$duongDanAnh','$category_id')");
-//   echo mysqli_error($conn);
-// }
-// $rs = mysqli_query($conn, "SELECT *,product.id as product_id,product.name as product_name,category.name as category_name FROM product INNER JOIN category ON product.category_id=category.id");
->>>>>>> 7d6eeb8361999a998a46d2fb9f0499d7a9e79914
 
 $rs = mysqli_query($conn, "SELECT * FROM product");
 
@@ -181,9 +166,7 @@ $rs = mysqli_query($conn, "SELECT * FROM product");
       Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
     }
   </script>
-  <!-- Github buttons -->
   <script async defer src="https://buttons.github.io/buttons.js"></script>
-  <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
   <script src="../assets/js/argon-dashboard.min.js?v=2.0.4"></script>
 </body>
 

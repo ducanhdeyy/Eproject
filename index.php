@@ -1,8 +1,10 @@
 <?php
+require_once "config.php";
 $conn = mysqli_connect('localhost','root','','fanofan');
 if(!$conn){
   echo mysqli_connect_error();
 }
+$rs = mysqli_query($conn, "SELECT *,product.id as product_id,product.name as product_name,category.name as category_name FROM product INNER JOIN category ON product.category_id=category.id");
 ?>
 
 <!DOCTYPE html>
@@ -25,16 +27,17 @@ if(!$conn){
          <nav class="flex justify-between items-center py-5">
             <!-- logo -->
             <div style="height: 35px; width: 138px;" class="w-28 lg:w-full lg:mx-5 z-20 mx-0">
-               <a href="home.html"><img src="./img/logo.png" alt=""></a>
+               <a href="home.php"><img src="./img/logo.png" alt=""></a>
             </div>
             <!-- link -->
             <ul id="menu" class="invisible fixed z-20 top-0 left-0 w-full h-screen flex flex-col justify-center items-center bg-gray-900 bg-opacity-90 lg:bg-transparent lg:h-auto lg:flex-row lg:justify-evenly lg:static
                     md:visible">
-               <li class="m-12 lg:m-0"><a href="home.html" class="text-white md:text-black hover:text-red-500">Home</a>
+               <li class="m-12 lg:m-0"><a href="home.php" class="text-white md:text-black hover:text-red-500">Home</a>
                </li>
-               <li class="m-12 lg:m-0"><a href="products-category.html" class="text-white md:text-black hover:text-red-500">Product</a></li>
-               <button class="m-12 lg:m-0 text-white md:text-black hover:text-red-500"><a href="signup.html">Signup</a></button>
-               <button class="m-12 lg:m-0 text-white md:text-black hover:text-red-500"><a href="login.html">Login</a> </button>
+               <li class="m-12 lg:m-0"><a href="product.php" class="text-white md:text-black hover:text-red-500">Product</a></li>
+               <li class="m-12 lg:m-0"><a href="about.php" class="text-white md:text-black hover:text-red-500">About</a></li>
+               <button class="m-12 lg:m-0 text-white md:text-black hover:text-red-500"><a href="signup.php">Signup</a></button>
+               <button class="m-12 lg:m-0 text-white md:text-black hover:text-red-500"><a href="login.php">Login</a> </button>
             </ul>
             <!-- menu botton -->
             <div id="menu-button" class="z-20 md:hidden cursor-pointer">
@@ -66,11 +69,11 @@ if(!$conn){
          <h2 class="font-bold text-4xl">NEW Product</h2>
          <p class="text-base">List product description</p>
       </div>
-      <?php  while ($product = mysqli_fetch_assoc($rs)): ?>
       <div class="grid lg:grid-cols-4 grid-cols-1 gap-8 ">
+      <?php foreach($rs as $product): ?>
          <div class="relative block mt-3 rounded-sm bg-white shadow-lg shadow-indigo-500/40 ... transition-transform hover:translate-y-1">
             <div>
-               <img class="bg-no-repeat bg-contain bg-top-center rounded-t-sm" src="<?php echo $product['img']; ?>" alt="">
+               <img class="bg-no-repeat bg-contain bg-top-center rounded-t-sm" src="<?php echo BASE_URL . $product['image']; ?>" alt="">
             </div>
             <div>
                <h4 class="m-2 mb-1 text-xl font-semibold leading-7  h-14 text-black"><?php echo $product['name']; ?></h4>
@@ -80,13 +83,13 @@ if(!$conn){
                </div>
                <div class="text-lg flex pb-2 pt-2 px-2  font-light text-gray-500">
                   <a href="" class="border border-inherit bg-slate-900 text-white px-3 py-1 rounded-md hover:bg-red-500 hover:border-transparent  justify-between items-center"><i class="fa fa-cart-plus" aria-hidden="true"></i></a>
-                  <a href="details.html" class="border border-inherit bg-slate-900 text-white px-3 py-1 rounded-md hover:bg-red-500 hover:border-transparent  justify-between items-center ml-2">Show
+                  <a href="detail.php?id=<?php echo $product['product_id']; ?>" class="border border-inherit bg-slate-900 text-white px-3 py-1 rounded-md hover:bg-red-500 hover:border-transparent  justify-between items-center ml-2">Show
                      more</a>
                </div>
             </div>
          </div>
+         <?php endforeach ?>
       </div>
-      <?php endwhile ?>
    </div>
    <a href="products-category.html"><button class="invisible border border-inherit bg-slate-900 text-white px-9 py-3 rounded-full hover:bg-red-500 hover:border-transparent flex justify-between items-center m-auto my-8 md:visible">More
          product >></button></a>

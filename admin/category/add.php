@@ -126,13 +126,10 @@ if (isset($_POST['name'])) {
             }
             ?>
             <form method="post">
-
               <div class="mb-2 py-2">
                 <label for="name" class="form-label text-sm">Name</label>
                 <input type="text" required class="form-control" name="name" id="name">
               </div>
-
-
               <div>
                 <button class="btn btn-primary">Add</button>
               </div>

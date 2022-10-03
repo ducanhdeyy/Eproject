@@ -2,24 +2,22 @@
 require_once('./../../config.php');
 $connect = mysqli_connect('localhost', 'root', '', 'fanofan');
 if (!$connect) {
-  die("Connect Failed") . mysqli_connect_error(); //in ra thông báo lỗi và dừng chương trình
+  die("Connect Failed") . mysqli_connect_error();
 }
-
 if (isset($_GET['id']) && is_numeric($_GET['id'])) {
   $id = $_GET['id'];
-} else header('Location:product.php');
-
+} 
 if (isset($_FILES['image']) && $_FILES['image']['name']) {
-  $duongDanAnh = 'uploads/' . time() . $_FILES['image']['name'];
-  move_uploaded_file($_FILES['image']['tmp_name'], $duongDanAnh);
+  $duongDanAnh = '/uploads/10-2022/'. time() . $_FILES['image']['name'];
+  move_uploaded_file($_FILES['image']['tmp_name'],'../..'.$duongDanAnh);
   $name = $_POST['name'];
   $price  = $_POST['price'];
   $content = $_POST['content'];
   $category_id = $_POST['category_id'];
   $sql = "UPDATE product SET name='$name',price='$price',content='$content',category_id='$category_id',image = '$duongDanAnh' WHERE id=$id";
   mysqli_query($connect, $sql);
-}
-
+  header('Location:product.php');
+} 
 $sql = "SELECT * FROM product WHERE id=$id";
 $results = mysqli_query($connect, $sql);
 if (mysqli_num_rows($results) == 1) {
@@ -127,7 +125,7 @@ $categoryRS = mysqli_query($connect, "SELECT * FROM category");
               <div class="mb-2">
                 <label for="name" class="form-label">Image</label>
                 <input type="file" required class="form-control" name="image" id="image">
-                <img src="<?php echo BASE_URL . $obj['image']; ?>" width="50" />
+                <img src="<?php echo BASE_URL . $obj['image']; ?>" width="150" />
               </div>
               <div class="mb-2">
                 <label for="name" class="form-label">Name</label>
@@ -139,15 +137,13 @@ $categoryRS = mysqli_query($connect, "SELECT * FROM category");
                 <input type="text" required class="form-control" name="price" id="price" value="<?php echo $obj['price']; ?>">
               </div>
 
-
               <div class="mb-2">
                 <label for="category" class="form-label">Category</label>
                 <select class="form-control" name="category_id" id="category">
                   <?php while ($category = mysqli_fetch_assoc($categoryRS)) : ?>
-
                     <option value="<?php echo $category['id']; ?>" <?php if ($category['id'] == $obj['category_id']) {
-                                                                      echo 'selected = "selected"';
-                                                                    } ?>> <?php echo $category['name']; ?> </option>
+                    echo 'selected = "selected"';
+                    } ?>> <?php echo $category['name']; ?> </option>
                   <?php endwhile ?>
                 </select>
               </div>
