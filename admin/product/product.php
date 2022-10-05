@@ -1,5 +1,6 @@
 <?php
 require_once('./../../config.php');
+
 $conn = mysqli_connect('localhost', 'root', '', 'fanofan');
 if (!$conn) {
   echo mysqli_connect_error();
@@ -16,9 +17,19 @@ if (isset($_FILES['image']) && $_FILES['image']['name']) {
   echo mysqli_error($conn);
 }
 $rs = mysqli_query($conn, "SELECT *,product.id as product_id,product.name as product_name,category.name as category_name FROM product INNER JOIN category ON product.category_id=category.id");
-
-$rs = mysqli_query($conn, "SELECT * FROM product");
-
+// lấy về số bản ghi có trong bảng
+$a = mysqli_num_rows($rs);
+// làm tròn số tranglên 
+$sotrang = ceil($a / 10);
+if (isset($_GET['id'])) {
+  $id = $_GET['id'];
+  $location = ($id - 1) * 10;
+  $productList = mysqli_query($conn, "SELECT *,product.id as product_id,product.name as product_name,category.name as category_name FROM product INNER JOIN category ON product.category_id=category.id LIMIT $location,10");
+} else {
+  $id = 1;
+  $location = ($id - 1) * 10;
+  $productList = mysqli_query($conn, "SELECT *,product.id as product_id,product.name as product_name,category.name as category_name FROM product INNER JOIN category ON product.category_id=category.id LIMIT $location,10");
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -85,35 +96,52 @@ $rs = mysqli_query($conn, "SELECT * FROM product");
     <?php include_once '../common/nav.php' ?>
     <div class="container-fluid py-4">
       <div class="row">
-        <div class="col-md-10 mt-4 mx-auto">
-          <div class="card h-100 mb-4 pl-2">
-            <table class="table-auto p-6 border-spacing-2 border border-slate-500 ...">
-              <a class="py-2 font-weight-bolder" href="add.php">Add product</a>
+        <div class="col-md-13 mt-4">
+          <div class="card h-100 m-auto pl-2">
+            <table class="border border-separate border-spacing-2 border-slate-500 ...">
+              <a class="py-2 m-auto font-weight-bolder" href="add.php">Add product</a>
               <thead>
                 <tr>
-                  <th class="text-center text-uppercase text-secondary text-sm font-weight-bolder"></th>
+                  <th class="text-center text-uppercase text-secondary text-sm font-weight-bolder">ID</th>
                   <th class="text-center text-uppercase text-secondary text-sm font-weight-bolder">Name</th>
                   <th class="text-center text-uppercase text-secondary text-sm font-weight-bolder">price</th>
                   <th class="text-center text-uppercase text-secondary text-sm font-weight-bolder">content</th>
                   <th class="text-center text-uppercase text-secondary text-sm font-weight-bolder">image</th>
-                  <th class="text-center text-uppercase text-secondary text-sm font-weight-bolder"> Action</th>
+                  <th class="text-center text-uppercase text-secondary text-sm font-weight-bolder">Action</th>
                 </tr>
               </thead>
               <tbody>
-                <?php while ($product = mysqli_fetch_assoc($rs)) : ?>
+                <?php while ($product = mysqli_fetch_assoc($productList)) : ?>
                   <tr>
-                    <td class="text-center"><?php echo $product['id']; ?></td>
-                    <td class="text-center"><?php echo $product['name']; ?></td>
+                    <td class="text-center"><?php echo $product['product_id']; ?></td>
+                    <td class="text-center"><?php echo $product['product_name']; ?></td>
                     <td class="text-center"><?php echo $product['price']; ?></td>
                     <td class="text-center"><?php echo $product['content']; ?></td>
                     <td class="text-center"><img src="<?php echo BASE_URL . $product['image']; ?>" alt="" width="50"></td>
                     <td class="action">
-                      <a class="text-secondary font-weight-bold text-sm p-1" href="edit.php?id=<?php echo $product['id']; ?>">Edit</a>
-                      <a class="text-secondary font-weight-bold text-sm p-1" href="delete.php?id=<?php echo $product['id']; ?>" onclick=" return confirm('Bạn thật sự muốn xóa ?') ">Delete</a>
+                      <a class="text-secondary font-weight-bold text-sm p-1" href="edit.php?id=<?php echo $product['product_id']; ?>">Edit</a>
+                      <a class="text-secondary font-weight-bold text-sm p-1" href="delete.php?id=<?php echo $product['product_id']; ?>" onclick=" return confirm('Bạn thật sự muốn xóa ?') ">Delete</a>
                     </td>
                   <?php endwhile ?>
+
+                  </tr>
+                  <tr>
+                    <th>
+                      <?php $i = 1;
+                      while ($i <= $sotrang) { ?>
+                        <div style="width: 100px; list-style:none; display:inline-block">
+                          <li class="page-item  <?php if (!$id) {
+                                                  $id = 1;
+                                                }
+                                                echo ($id == $i) ? 'active' : ''; ?>"><a class="page-link" href="<?php 'admin/product/product.php' ?>?id=<?php echo $i ?>"><?php echo $i ?></a></li>
+                        </div>
+                      <?php $i++;
+                      } ?>
+                    </th>
                   </tr>
               </tbody>
+
+
             </table>
           </div>
         </div>

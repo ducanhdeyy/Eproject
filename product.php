@@ -85,7 +85,7 @@ $rs = mysqli_query($conn, "SELECT *,product.id as product_id,product.name as pro
                             <img class="bg-no-repeat bg-contain bg-top-center rounded-full w-50%" src="<?php echo BASE_URL . $product['image'] ?>" alt="">
                         </div>
                         <div>
-                            <h4 class="m-2 mb-1 text-xl font-semibold leading-7 lg:h-8 h-8 text-black"><?php echo $product['name'] ?></h4>
+                            <h4 class="m-2 mb-1 text-xl font-semibold leading-7 lg:h-8 h-8 text-black"><?php echo $product['product_name'] ?></h4>
                             <p class="m-2 mb-1 text-sm leading-7 lg:h-14 h-14 text-black block"><?php echo $product['content'] ?></p>
                             <div class="flex items-baseline flex-wrap my-0 mx-2">
                                 <span class="text-red-600 text-2xl mt-1"><?php echo Utils::formatMoney($product['price']) ?></span>

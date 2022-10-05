@@ -335,8 +335,8 @@ $get = $dal->getOne($id);
                         alt="">
                 </div>
                 <div>
-                    <h4 class="m-1 mb-1 text-xl font-semibold leading-7 h-14 text-black"><?php echo  $product['name'] ?></h4>
-                    <p class="m-1 mb-1 text-xl font-semibold leading-7 h-14 text-black block"><?php echo  $product['content'] ?></p>
+                    <h4 class="m-1 mb-1 text-xl font-semibold leading-7 h-16 text-black"><?php echo  $product['name'] ?></h4>
+                    <p class="m-1 mb-1 text-sm leading-7 h-14 text-black block"><?php echo  $product['content'] ?></p>
                     <div class="flex items-baseline flex-wrap my-0 mx-2">
                         <span class="text-red-600 text-2xl mt-1"><?php echo Utils::formatMoney($product['price'])  ?></span>
                     </div>

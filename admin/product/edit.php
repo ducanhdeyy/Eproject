@@ -1,6 +1,6 @@
 <?php
 require_once('./../../config.php');
-$connect = mysqli_connect('localhost', 'root', '', 'fanofan');
+$connect = mysqli_connect('localhost','root','','fanofan');
 if (!$connect) {
   die("Connect Failed") . mysqli_connect_error();
 }
@@ -21,7 +21,7 @@ if (isset($_FILES['image']) && $_FILES['image']['name']) {
 $sql = "SELECT * FROM product WHERE id=$id";
 $results = mysqli_query($connect, $sql);
 if (mysqli_num_rows($results) == 1) {
-  $obj = mysqli_fetch_assoc($results);
+$obj = mysqli_fetch_assoc($results);
 }
 
 $categoryRS = mysqli_query($connect, "SELECT * FROM category");
@@ -120,8 +120,6 @@ $categoryRS = mysqli_query($connect, "SELECT * FROM category");
                   <?php endwhile ?>
                 </select>
               </div>
-
-
               <div class="mb-3">
                 <label for="content" class="form-label">Content</label>
                 <textarea class="form-control" name="content" id="content"> <?php echo $obj['content']; ?> </textarea>
