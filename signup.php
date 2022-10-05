@@ -1,24 +1,27 @@
 <?php
-session_start();
-require_once 'dals/UserDAL.php';
-$userDAL = new UserDAL();
-if (isset($_POST['name'])) {
+$conn = mysqli_connect('localhost','root','','fanofan');
+if(!$conn){
+  echo mysqli_connect_error();
+}
+if(isset($_POST['signup'])){
   $name = $_POST['name'];
   $email = $_POST['email'];
   $password = $_POST['password'];
   $password1 = $_POST['password1'];
-  if($name !=null || $email !=null ){
-    if($password!=$password1){
-      $failed = "Mật khẩu không khớp, vui lòng nhập lại";
-    }else{
-      $a = $userDAL->signup($name);
-      if(mysqli_num_rows($a)<=0){
-        $userDAL->add($name,$email,$password);
-        $success = "Đăng ký tài khoản thành công, vui lòng đăng nhập";
-      }else{
-        $failed = "Tài khoản đã được đăng ký";
-      }
-    }
+  $phone = $_POST['phone'];
+  if($password != $password1){
+    header("location:signup.php");
+  }
+  $sql = "SELECT *FROM user WHERE email='$email'";
+  $rs = mysqli_query($conn,$sql);
+  $password = md5($password);
+  if(mysqli_num_rows($rs)>0){
+    echo 'Tài khoản đã tồn tại';
+  } else{
+    $sql = "INSERT INTO user(author,email,password,phone) VALUES('$name','$email',$password','$phone')";
+    mysqli_query($conn,$sql);
+    echo "Đăng ký thành công";
+    header("location:index.php");
   }
 }
 ?>
@@ -53,11 +56,6 @@ if (isset($_POST['name'])) {
       <div class="signup">
         <h1 class="signup-heading">Sign up</h1>
         <div class="signup-or"><span>Or</span></div>
-        <?php if (isset($failed)) {
-                            echo $failed;
-                        } else if (isset($success)) {
-                            echo $success;
-                        } ?>
         <form action="" class="signup-form" method="POST" enctype="multipart/form-data">
           <label for="fullname" class="signup-label">Full name</label>
           <input type="text" id="fullname" class="signup-input" name="name" placeholder="Nguyen Duc Anh">
@@ -67,6 +65,8 @@ if (isset($_POST['name'])) {
           <input type="password" id="password" class="signup-input" name="password" placeholder="Mời bạn nhập mật khẩu">
           <label for="password" class="signup-label">Repeat password </label>
           <input type="password" id="password" class="signup-input" name="password1" placeholder="Mời bạn nhập lại mật khẩu">
+          <label for="phone" class="signup-label">Phone</label>
+          <input type="text" id="password" class="signup-input" name="phone" placeholder="Mời bạn nhập số điện thoại">
           <button class="signup-submit" name="signup">Sign up</button>
         </form>
         <p class="signup-already">
