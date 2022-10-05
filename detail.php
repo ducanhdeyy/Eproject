@@ -81,7 +81,7 @@ $get = $dal->getOne($id);
         <div>
             <h3 class="font-bold text-2xl mt-6">Royal Strong PC fan</h3>
             <hr style="margin: 16px 0; width: 83%;">
-            <table class="border-collapse border border-slate-500 ... w-10/12 ">
+            <table class="border-collapse border border-slate-500 ... lg:w-10/12 w-full ">
                 <tbody class="text-left">
                     <tr>
                         <th class="border border-slate-300 px-1">Size</th>
@@ -110,7 +110,7 @@ $get = $dal->getOne($id);
 
                 </tbody>
             </table>
-            <div class="border border-slate-300 mt-3 w-10/12 bg-slate-100">
+            <div class="border border-slate-300 mt-3 lg:w-10/12 w-full bg-slate-100">
                 <p><i class="fa fa-check p-2" aria-hidden="true"></i>Guarantee:<strong>10 years.</strong>Warranty of
                     shaking.</p>
                 <p><i class="fa fa-check p-2" aria-hidden="true"></i>Maintenance:<strong>Free.</strong>2 times/year.</p>
@@ -137,8 +137,8 @@ $get = $dal->getOne($id);
                     class="border border-inherit bg-slate-900 text-white px-28 py-2 rounded-md hover:bg-red-500 hover:border-transparent  justify-between items-center ml-5">Buy
                 </a>
             </div>
-            <div class="border border-slate-300 mt-7 w-10/12 bg-slate-100 rounded-md p-2 text-center">
-                <span><i class="fa fa-phone" aria-hidden="true"></i><?php echo $get->phone; ?></span>
+            <div class="border border-slate-300 mt-7 lg:w-10/12 w-full bg-slate-100 rounded-md p-2 text-center">
+                <span><i class="fa fa-phone" aria-hidden="true"></i><?php ?></span>
             </div>
         </div>
     </div>
@@ -358,14 +358,12 @@ $get = $dal->getOne($id);
     <section class="grid lg:grid-cols-4 grid-cols-1 gap-5 py-5 px-10 lg:mx-32 lg:mr-32 lg:text-left text-center">
         <div>
             <h6 class="text-lg font-bold uppercase text-gray-700">Copany name</h6>
-            <hr style="height: 2em;width:25%;">
             <p class="text-base">The FANoFAN Co. is the original and premier source for contemporary ceiling fan design,
                 producing the
                 most complete, exclusively modern collection of ceiling fans available.</p>
         </div>
         <div>
             <h6 class="text-lg font-bold uppercase text-gray-700">PRODUCTS</h6>
-            <hr style="height: 2em;width:25%;">
             <p><a class="text-base hover:text-orange-400" href="">Ceiling Fans</a></p>
             <p><a class="text-base hover:text-orange-400" href="">Table Fans</a></p>
             <p><a class="text-base hover:text-orange-400" href="">Exhaust</a></p>
@@ -374,7 +372,6 @@ $get = $dal->getOne($id);
 
         <div>
             <h6 class="text-lg font-bold uppercase text-gray-700">USEFUL LINKS</h6>
-            <hr style="height: 2em;width:25%;">
             <p><a class="text-base hover:text-orange-400" href="">Your Account</a></p>
             <p><a class="text-base hover:text-orange-400" href="">Become an Affiliate</a></p>
             <p><a class="text-base hover:text-orange-400" href="">Shipping Rates</a></p>
@@ -383,7 +380,6 @@ $get = $dal->getOne($id);
 
         <div>
             <h6 class="text-lg font-bold uppercase text-gray-700">CONTACT</h6>
-            <hr style="height: 2em;width:25%;">
             <p><i class="fa fa-home text-base" aria-hidden="true">Ha Noi, Viet Nam</i></p>
             <p><i class="fa fa-envelope-o text-base" aria-hidden="true">abcd@gmail.com</i></p>
             <p><i class="fa fa-phone text-base" aria-hidden="true">90-123-4567</i></p>
@@ -393,6 +389,7 @@ $get = $dal->getOne($id);
     <div class="text-center my-4">
         <p class="text-gray-500">&copy;2020 Copyright: FANoFAN.vn</p>
     </div>
+    <script src="../Eprojects/main.js"></script>
 </body>
 
 </html>
