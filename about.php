@@ -37,7 +37,7 @@
                             href="login.php">Login</a> </button>
                 </ul>
                 <!-- menu botton -->
-                <div id="menu-button" class="z-20 md:hidden cursor-pointer">
+                <div id="menu-button" class="z-20 lg:hidden cursor-pointer">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                         stroke="currentColor" class="w-6 h-6">
                         <path stroke-linecap="round" stroke-linejoin="round"
@@ -51,9 +51,9 @@
     <div>
         <h2 class="text-center pt-4 pb-3 font-normal lg:text-5xl text-3xl uppercase tracking-wide text-slate-600 font-sans">MEET OUR
             TEAM</h2>
-        <div class="flex lg:w-1/3 grid-cols-1 w-full justify-center items-center">
+        <div class="lg:flex grid grid-cols-1 justify-center items-center">
             <div
-                class="relative my-6 lg:mx-3 pt-4 rounded-sm bg-slate-100 shadow-lg shadow-indigo-500/40 transition-transform hover:translate-y-1 px-4">
+                class="relative lg:w-1/5 my-6 lg:mx-3 pt-4 rounded-sm bg-slate-100 shadow-lg shadow-indigo-500/40 transition-transform hover:translate-y-1 px-4">
                 <div>
                     <img class="bg-no-repeat bg-contain bg-top-center rounded-full" src="../Eprojects/admin/assets/img/avt.jpg"
                         alt="">
@@ -77,7 +77,7 @@
                 </div>
             </div>
             <div
-                class="relative my-6 lg:mx-3 pt-4 rounded-sm bg-white shadow-lg shadow-indigo-500/40 transition-transform hover:translate-y-1 px-4">
+                class="relative lg:w-1/5  my-6 lg:mx-3 pt-4 rounded-sm bg-white shadow-lg shadow-indigo-500/40 transition-transform hover:translate-y-1 px-4">
                 <div>
                     <img class="bg-no-repeat bg-contain bg-top-center rounded-full" src="../Eprojects/admin/assets/img/avt.jpg"
                         alt="">
@@ -180,7 +180,7 @@
     </div>
     <a class="fixed w-20 h-14 bottom-10 right-40 bg-sky-600 text-white rounded-full text-center shadow-slate-500 hover:ease-out duration-300 ... " href=""><i class="fa fa-shopping-cart inline-block text-2xl mt-2.5 hover:text-red-500" aria-hidden="true"></i></a>
     <!-- mainjs -->
-    <script src="../main.js"></script>
+    <script src="../Eprojects/main.js"></script>
 </body>
 
 </html>
