@@ -1,11 +1,16 @@
 <?php
 require_once "config.php";
 require_once 'Utils.php';
+require_once 'dals/CategoryDAL.php';
+require_once 'dals/ProductDAL.php';
 $conn = mysqli_connect('localhost','root','','fanofan');
 if(!$conn){
   echo mysqli_connect_error();
 }
 $rs = mysqli_query($conn, "SELECT *,product.id as product_id,product.name as product_name,category.name as category_name FROM product INNER JOIN category ON product.category_id=category.id");
+$categoryDAL = new CategoryDAL();
+$categoryList = $categoryDAL->getList();
+$productDAL = new ProductDAL();
 ?>
 
 <!DOCTYPE html>
@@ -66,7 +71,7 @@ $rs = mysqli_query($conn, "SELECT *,product.id as product_id,product.name as pro
          <h2 class="font-bold text-4xl">NEW Product</h2>
          <p class="text-base">List product description</p>
       </div>
-      <div class="grid lg:grid-cols-4 grid-cols-1 gap-8 ">
+      <div class="grid lg:grid-cols-4 grid-cols-1 gap-8 mx:0 lg:mx-40">
       <?php foreach($rs as $product): ?>
          <div class="relative block mt-3 rounded-sm bg-white shadow-lg shadow-indigo-500/40 ... transition-transform hover:translate-y-1">
             <div>
@@ -79,7 +84,7 @@ $rs = mysqli_query($conn, "SELECT *,product.id as product_id,product.name as pro
                   <span class="text-red-600 text-2xl mt-1"><?php echo Utils::formatMoney($product['price'])  ?></span>
                </div>
                <div class="text-lg flex pb-2 pt-2 px-2  font-light text-gray-500">
-                  <a href="" class="border border-inherit bg-slate-900 text-white px-3 py-1 rounded-md hover:bg-red-500 hover:border-transparent  justify-between items-center"><i class="fa fa-cart-plus" aria-hidden="true"></i></a>
+                  <a href="add-to-card.php?id=<?php echo $product['product_id']; ?>" class="border border-inherit bg-slate-900 text-white px-3 py-1 rounded-md hover:bg-red-500 hover:border-transparent  justify-between items-center"><i class="fa fa-cart-plus" aria-hidden="true"></i></a>
                   <a href="detail.php?id=<?php echo $product['product_id']; ?>" class="border border-inherit bg-slate-900 text-white px-3 py-1 rounded-md hover:bg-red-500 hover:border-transparent  justify-between items-center ml-2">Show
                      more</a>
                </div>
@@ -88,10 +93,10 @@ $rs = mysqli_query($conn, "SELECT *,product.id as product_id,product.name as pro
          <?php endforeach ?>
       </div>
    </div>
-   <a href="products-category.html"><button class="invisible border border-inherit bg-slate-900 text-white px-9 py-3 rounded-full hover:bg-red-500 hover:border-transparent flex justify-between items-center m-auto my-8 md:visible">More
+   <a href="product.php"><button class="invisible border border-inherit bg-slate-900 text-white px-9 py-3 rounded-full hover:bg-red-500 hover:border-transparent flex justify-between items-center m-auto my-8 md:visible">More
          product >></button></a>
    <!-- footer -->
-   <section class="grid lg:grid-cols-4 grid-cols-1 gap-5 py-5 px-10 mr-auto">
+   <section class="grid lg:grid-cols-4 grid-cols-1 gap-5 py-5 px-10 lg:mx-32 lg:mr-32 lg:text-left text-center">
       <div>
          <h6 class="text-lg font-bold uppercase text-gray-700">Copany name</h6>
          <hr style="height: 2em;width:25%;">
@@ -131,7 +136,7 @@ $rs = mysqli_query($conn, "SELECT *,product.id as product_id,product.name as pro
    </div>
    <a class="fixed w-20 h-14 bottom-10 right-40 bg-sky-600 text-white rounded-full text-center shadow-slate-500 hover:ease-out duration-300 ... " href=""><i class="fa fa-shopping-cart inline-block text-2xl mt-2.5 hover:text-red-500" aria-hidden="true"></i></a>
    <!-- mainjs -->
-   <script src="../main.js"></script>
+   <script src="../Eprojects/main.js"></script>
 </body>
 
 </html>

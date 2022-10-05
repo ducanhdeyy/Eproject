@@ -1,11 +1,15 @@
 <?php
-$conn = mysqli_connect('localhost','root','','fanofan');
-if(!$conn){
-  echo mysqli_connect_error();
-}
-if(isset($_POST['signin'])){
-  $email = $_POST['email'];
-  $password = $_POST['password'];
+session_start();
+require_once 'dals/UserDAL.php';
+$userDAL = new UserDAL();
+if(isset($_POST['email'])){
+ $a =  $userDAL->login($_POST);
+ if($a){
+  $_SESSION['login'] = $a;
+   header('location:index.php');
+ }else{
+  $failed = "tài khoản mật khẩu không chính xác";
+ }
 }
 ?>
 <!DOCTYPE html>
@@ -42,10 +46,6 @@ if(isset($_POST['signin'])){
       <div class="wrapper">
         <div class="signup">
           <h1 class="signup-heading">Login</h1>
-          <button class="signup-social">
-            <i class="fa fa-google signup-social-icon"></i>
-            <span  class="signup-social-text"><a href="https://by.com.vn/fkbGi"> Login with Google</a></span>
-          </button>
           <div class="signup-or"><span>Or</span></div>
           <form action="#" class="signup-form" autocomplete="off" method="POST">
             <label for="email" class="signup-label">Email</label>

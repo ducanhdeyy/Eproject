@@ -3,17 +3,14 @@ session_start();
 $dir = str_replace("admin\user","",__DIR__);
 require_once $dir . 'dals/UserDAL.php';
 $userDAL = new UserDAL();
-if(isset($_POST['signin'])){
-  $email = $_POST['email'];
-  $password = $_POST['password'];
-  $rs = $userDAL->signin($email,$password);
-  $data = $rs -> fetch_row();
-  if(mysqli_num_rows($rs) > 0){
-    $_SESSION['loginAdmin'] = $data;
-    header('location:user.php');
-  }else{
-    $failed = "tài khoản hoặc mật khẩu không chính xác";
-  }
+if(isset($_POST['email'])){
+ $a =  $userDAL->login($_POST);
+ if($a){
+  $_SESSION['login'] = $a;
+   header('location:user.php');
+ }else{
+  $failed = "tài khoản mật khẩu không chính xác";
+ }
 }
 ?>
 <!DOCTYPE html>
@@ -35,50 +32,8 @@ if(isset($_POST['signin'])){
   <link id="pagestyle" href="../assets/css/argon-dashboard.css?v=2.0.4" rel="stylesheet" />
 </head>
 
-<body class="">
-  <div class="container position-sticky z-index-sticky top-0">
-    <div class="row">
-      <div class="col-12">
-        <!-- Navbar -->
-        <nav class="navbar navbar-expand-lg blur border-radius-lg top-0 z-index-3 shadow position-absolute mt-4 py-2 start-0 end-0 mx-2">
-          <div class="container-fluid">
-            <button class="navbar-toggler shadow-none ms-2" type="button" data-bs-toggle="collapse" data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon mt-2">
-                <span class="navbar-toggler-bar bar1"></span>
-                <span class="navbar-toggler-bar bar2"></span>
-                <span class="navbar-toggler-bar bar3"></span>
-              </span>
-            </button>
-            <div class="collapse navbar-collapse" id="navigation">
-              <ul class="navbar-nav mx-auto">
-                <li class="nav-item">
-                  <a class="nav-link me-2" href="../profile.php">
-                    <i class="fa fa-user opacity-6 text-dark me-1"></i>
-                    Profile
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link me-2" href="../user/sign-up.php">
-                    <i class="fas fa-user-circle opacity-6 text-dark me-1"></i>
-                    Sign Up
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link me-2" href="../user/sign-in.php">
-                    <i class="fas fa-key opacity-6 text-dark me-1"></i>
-                    Sign In
-                  </a>
-                </li>
-              </ul>
-
-            </div>
-          </div>
-        </nav>
-        <!-- End Navbar -->
-      </div>
-    </div>
-  </div>
-  <main class="main-content  mt-0">
+<body>
+  <main class="main-content mt-0">
     <section>
       <div class="page-header min-vh-100">
         <div class="container">
@@ -96,12 +51,12 @@ if(isset($_POST['signin'])){
                   else if(isset($failed)){
                     echo $failed;
                   } ?>
-                  <form role="form" method="POST">
+                  <form role="form" method="POST" enctype="multipart/form-data">
                     <div class="mb-3">
-                      <input type="email" class="form-control form-control-lg" placeholder="Email" aria-label="Email">
+                      <input type="email" name="email" class="form-control form-control-lg" placeholder="email" aria-label="Email">
                     </div>
                     <div class="mb-3">
-                      <input type="password" class="form-control form-control-lg" placeholder="Password" aria-label="Password">
+                      <input type="password" name="password" class="form-control form-control-lg" placeholder="password" aria-label="Password">
                     </div>
                     <div class="form-check form-switch">
                       <input class="form-check-input" type="checkbox" id="rememberMe">

@@ -68,7 +68,7 @@ $get = $dal->getOne($id);
         </div>
     </header>
 
-    <div class="grid lg:grid-cols-2 grid-cols-1 gap-4">
+    <div class="grid lg:grid-cols-2 grid-cols-1 gap-4 lg:mx-40 mx-0">
         <div>
             <img src="<?php echo BASE_URL . $product['image'] ?>" alt="">
             <div class="grid grid-cols-3 gap-4">
@@ -80,8 +80,8 @@ $get = $dal->getOne($id);
 
         <div>
             <h3 class="font-bold text-2xl mt-6">Royal Strong PC fan</h3>
-            <hr style="margin: 16px 0; width: 100%;">
-            <table class="border-collapse border border-slate-500 ... w-full ">
+            <hr style="margin: 16px 0; width: 83%;">
+            <table class="border-collapse border border-slate-500 ... w-10/12 ">
                 <tbody class="text-left">
                     <tr>
                         <th class="border border-slate-300 px-1">Size</th>
@@ -110,7 +110,7 @@ $get = $dal->getOne($id);
 
                 </tbody>
             </table>
-            <div class="border border-slate-300 mt-3 w-full bg-slate-100">
+            <div class="border border-slate-300 mt-3 w-10/12 bg-slate-100">
                 <p><i class="fa fa-check p-2" aria-hidden="true"></i>Guarantee:<strong>10 years.</strong>Warranty of
                     shaking.</p>
                 <p><i class="fa fa-check p-2" aria-hidden="true"></i>Maintenance:<strong>Free.</strong>2 times/year.</p>
@@ -142,7 +142,7 @@ $get = $dal->getOne($id);
             </div>
         </div>
     </div>
-    <div class="grid lg:grid-cols-2 grid-cols-1 gap-4">
+    <div class="grid lg:grid-cols-2 grid-cols-1 gap-4 lg:mx-40 mx-0">
         <div>
             <h2 class="font-bold text-3xl">Product information</h2>
             <p class="text-sm mt-3"><a href="" style="color: blueviolet;">Ceiling fan decorated</a> with 5 Royal Strong
@@ -355,7 +355,7 @@ $get = $dal->getOne($id);
         
 
     </div>
-    <section class="grid lg:grid-cols-4 grid-cols-1 gap-5 py-5 px-10 m-auto mt-10">
+    <section class="grid lg:grid-cols-4 grid-cols-1 gap-5 py-5 px-10 lg:mx-32 lg:mr-32 lg:text-left text-center">
         <div>
             <h6 class="text-lg font-bold uppercase text-gray-700">Copany name</h6>
             <hr style="height: 2em;width:25%;">

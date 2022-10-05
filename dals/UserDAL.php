@@ -61,17 +61,17 @@
             return false;
         }
     }
-    public function signin($id){
-        $sql = "SELECT *FROM $this->tableName WHERE id=$id";
-        $rs = $this->pdo->query($sql);  
-        $rs->setFetchMode(PDO::FETCH_OBJ);
-        return $rs->fetch();
+    public function login($data){
+       $sql = "SELECT * FROM $this->tableName where email = '".$data['email']."' and password = '".$data['password']."'";
+       $rs = $this->pdo->query($sql);  
+       $rs->setFetchMode(PDO::FETCH_OBJ);
+       return $rs->fetch(); 
     }
-    public function signup($id){
-        $sql = "SELECT *FROM $this->tableName WHERE id=$id";
-        $rs = $this->pdo->query($sql);  
-        $rs->setFetchMode(PDO::FETCH_OBJ);
-        return $rs->fetch();
-    }
+    // public function signup($data){
+    //     $sql = "SELECT * FROM $this->tableName where email = '".$data['email']."',password = '".$data['password']."',phone = '".$data['phone']."'";
+    //     $rs = $this->pdo->query($sql);  
+    //     $rs->setFetchMode(PDO::FETCH_OBJ);
+    //     return $rs->fetch(); 
+    //  }
 }
 ?>
