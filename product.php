@@ -6,8 +6,20 @@ if (!$conn) {
     echo mysqli_connect_error();
 }
 $rs = mysqli_query($conn, "SELECT *,product.id as product_id,product.name as product_name,category.name as category_name FROM product INNER JOIN category ON product.category_id=category.id");
+// lấy về số bản ghi có trong bảng
+$a = mysqli_num_rows($rs);
+// làm tròn số tranglên 
+$sotrang = ceil($a / 10);
+if (isset($_GET['id'])) {
+    $id = $_GET['id'];
+    $location = ($id - 1) * 10;
+    $productList = mysqli_query($conn, "SELECT *,product.id as product_id,product.name as product_name,category.name as category_name FROM product INNER JOIN category ON product.category_id=category.id LIMIT $location,10");
+} else {
+    $id = 1;
+    $location = ($id - 1) * 10;
+    $productList = mysqli_query($conn, "SELECT *,product.id as product_id,product.name as product_name,category.name as category_name FROM product INNER JOIN category ON product.category_id=category.id LIMIT $location,10");
+}
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -54,7 +66,7 @@ $rs = mysqli_query($conn, "SELECT *,product.id as product_id,product.name as pro
     <div class="grid lg:flex gap-3">
         <div class="w-full lg:ml-40 mx-0">
             <div class="border-2 border-sky-500 my-6 shadow-lg shadow-indigo-500/40 ...">
-                <div class="card-header border-b-2 border-sky-500 bg-slate-400 p-1 text-xl text-white"> Ceiling Fans
+                <div class="card-header border-b-2 border-sky-500 bg-slate-400 px-3 text-xl text-white"> Ceiling Fans
                 </div>
                 <div class="">
                     <p><a class="px-3 hover:text-slate-600" href="# ">Modern Ceiling Fan</a></p>
@@ -77,7 +89,7 @@ $rs = mysqli_query($conn, "SELECT *,product.id as product_id,product.name as pro
             </div>
         </div>
 
-        <div class="grid lg:grid-cols-3 grid-cols-1 gap-8 lg:mr-14 ">
+        <div class="grid lg:grid-cols-3 grid-cols-1 gap-8 lg:mr-14 mt-3">
             <?php foreach ($rs as $product) : ?>
                 <div>
                     <div class="relative block mt-3 rounded-sm bg-white shadow-lg shadow-indigo-500/40 ... transition-transform hover:translate-y-1">
@@ -85,8 +97,8 @@ $rs = mysqli_query($conn, "SELECT *,product.id as product_id,product.name as pro
                             <img class="bg-no-repeat bg-contain bg-top-center rounded-full w-50%" src="<?php echo BASE_URL . $product['image'] ?>" alt="">
                         </div>
                         <div>
-                            <h4 class="m-2 mb-1 text-xl font-semibold leading-7 lg:h-8 h-8 text-black"><?php echo $product['product_name'] ?></h4>
-                            <p class="m-2 mb-1 text-sm leading-7 lg:h-14 h-14 text-black block"><?php echo $product['content'] ?></p>
+                            <h4 class="m-2 mb-1 text-xl font-semibold lg:h-14 h-14 text-black"><?php echo $product['product_name'] ?></h4>
+                            <p class="m-2 mb-1 text-sm lg:h-14 h-14 text-black block"><?php echo $product['content'] ?></p>
                             <div class="flex items-baseline flex-wrap my-0 mx-2">
                                 <span class="text-red-600 text-2xl mt-1"><?php echo Utils::formatMoney($product['price']) ?></span>
                             </div>
@@ -101,8 +113,18 @@ $rs = mysqli_query($conn, "SELECT *,product.id as product_id,product.name as pro
             <?php endforeach ?>
         </div>
     </div>
-    <a href="products.php"><button class="invisible border border-inherit bg-slate-900 text-white px-9 py-3 rounded-full hover:bg-red-500 hover:border-transparent flex justify-between items-center m-auto my-8 md:visible">More
-            product >></button></a>
+    <div class="text-right mr-16 mt-4">
+        <?php $i = 1;
+        while ($i <= $sotrang) { ?>
+            <div style="width: 50px; list-style:none; display:inline-block">
+                <li class="page-item  <?php if (!$id) {
+                                            $id = 1;
+                                        }
+                                        echo ($id == $i) ? 'active' : ''; ?>"><a class="page-link border rounded-full ... text-xl p-2 bg-slate-900 text-white hover:bg-red-500 hover:border-transparent" href="<?php 'product.php' ?>?id=<?php echo $i ?>"><?php echo $i ?></a></li>
+            </div>
+        <?php $i++;
+        } ?>
+    </div>
     <!-- footer -->
     <section class="grid lg:grid-cols-4 grid-cols-1 gap-5 py-5 px-10 lg:mx-32 lg:mr-32 lg:text-left text-center">
         <div>
