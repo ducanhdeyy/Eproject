@@ -24,8 +24,7 @@
         $rs = $this->pdo->query($sql);  
         $rs->setFetchMode(PDO::FETCH_OBJ);
         return $rs->fetch(); 
-    }//R - one
-
+    }
     public function addOne($data){
         $prp = $this->pdo->prepare("INSERT INTO $this->tableName(name,content,price,image,category_id) VALUES(:name,:content,:price,:image,:category_id)");
         $prp->bindParam(':name',$data['name']);

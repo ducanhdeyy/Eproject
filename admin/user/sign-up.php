@@ -1,24 +1,33 @@
-
+<?php
+session_start();
+$dir = str_replace("admin\user","",__DIR__);
+require_once $dir . 'dals/UserDAL.php';
+$userDAL = new UserDAL();
+if(isset($_POST['signup'])){
+  $name = $_POST['name'];
+  $email = $_POST['email'];
+  $password = $_POST['password'];
+  $email = $_POST['phone'];
+    header('location:user.php');
+  }else{
+    $failed = "tài khoản hoặc mật khẩu không chính xác";
+  }
+?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
   <link rel="icon" type="image/png" href="../assets/img/favicon.png">
   <title>
-    Argon Dashboard 2 by Creative Tim
+    sign-up
   </title>
-  <!--     Fonts and icons     -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
-  <!-- Nucleo Icons -->
   <link href="../assets/css/nucleo-icons.css" rel="stylesheet" />
   <link href="../assets/css/nucleo-svg.css" rel="stylesheet" />
-  <!-- Font Awesome Icons -->
   <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
   <link href="../assets/css/nucleo-svg.css" rel="stylesheet" />
-  <!-- CSS Files -->
   <link id="pagestyle" href="../assets/css/argon-dashboard.css?v=2.0.4" rel="stylesheet" />
 </head>
 
@@ -26,9 +35,6 @@
   <!-- Navbar -->
   <nav class="navbar navbar-expand-lg position-absolute top-0 z-index-3 w-100 shadow-none my-3 navbar-transparent mt-4">
     <div class="container">
-      <a class="navbar-brand font-weight-bolder ms-lg-0 ms-3 text-white" href="../pages/dashboard.html">
-        Argon Dashboard 2
-      </a>
       <button class="navbar-toggler shadow-none ms-2" type="button" data-bs-toggle="collapse" data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon mt-2">
           <span class="navbar-toggler-bar bar1"></span>
@@ -39,33 +45,24 @@
       <div class="collapse navbar-collapse" id="navigation">
         <ul class="navbar-nav mx-auto">
           <li class="nav-item">
-            <a class="nav-link d-flex align-items-center me-2 active" aria-current="page" href="../pages/dashboard.html">
-              <i class="fa fa-chart-pie opacity-6  me-1"></i>
-              Dashboard
-            </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link me-2" href="../pages/profile.html">
+            <a class="nav-link me-2" href="../profile.php">
               <i class="fa fa-user opacity-6  me-1"></i>
               Profile
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link me-2" href="../pages/sign-up.html">
+            <a class="nav-link me-2" href="../user/sign-up.php">
               <i class="fas fa-user-circle opacity-6  me-1"></i>
               Sign Up
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link me-2" href="../pages/sign-in.html">
+            <a class="nav-link me-2" href="../user/sign-in.php">
               <i class="fas fa-key opacity-6  me-1"></i>
               Sign In
             </a>
-          </li>
-        </ul>
-        <ul class="navbar-nav d-lg-block d-none">
-          <li class="nav-item">
-            <a href="https://www.creative-tim.com/product/argon-dashboard" class="btn btn-sm mb-0 me-1 bg-gradient-light">Free Download</a>
           </li>
         </ul>
       </div>
@@ -93,7 +90,7 @@
             </div>
             <div class="row px-xl-5 px-sm-4 px-3">
               <div class="col-3 ms-auto px-1">
-                <a class="btn btn-outline-light w-100" href="javascript:;">
+                <a class="btn btn-outline-light w-100" href="https://www.facebook.com/;">
                   <svg width="24px" height="32px" viewBox="0 0 64 64" version="1.1">
                     <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                       <g transform="translate(3.000000, 3.000000)" fill-rule="nonzero">
@@ -104,19 +101,8 @@
                   </svg>
                 </a>
               </div>
-              <div class="col-3 px-1">
-                <a class="btn btn-outline-light w-100" href="javascript:;">
-                  <svg width="24px" height="32px" viewBox="0 0 64 64" version="1.1">
-                    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                      <g transform="translate(7.000000, 0.564551)" fill="#000000" fill-rule="nonzero">
-                        <path d="M40.9233048,32.8428307 C41.0078713,42.0741676 48.9124247,45.146088 49,45.1851909 C48.9331634,45.4017274 47.7369821,49.5628653 44.835501,53.8610269 C42.3271952,57.5771105 39.7241148,61.2793611 35.6233362,61.356042 C31.5939073,61.431307 30.2982233,58.9340578 25.6914424,58.9340578 C21.0860585,58.9340578 19.6464932,61.27947 15.8321878,61.4314159 C11.8738936,61.5833617 8.85958554,57.4131833 6.33064852,53.7107148 C1.16284874,46.1373849 -2.78641926,32.3103122 2.51645059,22.9768066 C5.15080028,18.3417501 9.85858819,15.4066355 14.9684701,15.3313705 C18.8554146,15.2562145 22.5241194,17.9820905 24.9003639,17.9820905 C27.275104,17.9820905 31.733383,14.7039812 36.4203248,15.1854154 C38.3824403,15.2681959 43.8902255,15.9888223 47.4267616,21.2362369 C47.1417927,21.4153043 40.8549638,25.1251794 40.9233048,32.8428307 M33.3504628,10.1750144 C35.4519466,7.59650964 36.8663676,4.00699306 36.4804992,0.435448578 C33.4513624,0.558856931 29.7884601,2.48154382 27.6157341,5.05863265 C25.6685547,7.34076135 23.9632549,10.9934525 24.4233742,14.4943068 C27.7996959,14.7590956 31.2488715,12.7551531 33.3504628,10.1750144"></path>
-                      </g>
-                    </g>
-                  </svg>
-                </a>
-              </div>
               <div class="col-3 me-auto px-1">
-                <a class="btn btn-outline-light w-100" href="javascript:;">
+                <a class="btn btn-outline-light w-100" href="https://accounts.google.com/AddSession/identifier?hl=vi&continue=https%3A%2F%2Fmail.google.com&service=mail&ec=GAlAFw&flowName=GlifWebSignIn&flowEntry=AddSession;">
                   <svg width="24px" height="32px" viewBox="0 0 64 64" version="1.1">
                     <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                       <g transform="translate(3.000000, 2.000000)" fill-rule="nonzero">
@@ -136,7 +122,8 @@
               </div>
             </div>
             <div class="card-body">
-              <form role="form">
+              
+              <form role="form" method="POST">
                 <div class="mb-3">
                   <input type="text" class="form-control" placeholder="Name" aria-label="Name">
                 </div>
@@ -146,6 +133,9 @@
                 <div class="mb-3">
                   <input type="password" class="form-control" placeholder="Password" aria-label="Password">
                 </div>
+                <div class="mb-3">
+                  <input type="text" class="form-control" placeholder="phone" aria-label="phone">
+                </div>
                 <div class="form-check form-check-info text-start">
                   <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" checked>
                   <label class="form-check-label" for="flexCheckDefault">
@@ -153,9 +143,9 @@
                   </label>
                 </div>
                 <div class="text-center">
-                  <button type="button" class="btn bg-gradient-dark w-100 my-4 mb-2">Sign up</button>
+                  <button type="submit" name="signup" class="btn bg-gradient-dark w-100 my-4 mb-2">Sign up</button>
                 </div>
-                <p class="text-sm mt-3 mb-0">Already have an account? <a href="javascript:;" class="text-dark font-weight-bolder">Sign in</a></p>
+                <p class="text-sm mt-3 mb-0">Already have an account? <a href="../user/sign-in.php" class="text-dark font-weight-bolder">Sign in</a></p>
               </form>
             </div>
           </div>

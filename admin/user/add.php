@@ -1,13 +1,13 @@
 <?php
 session_start();
 //echo __DIR__; //C:\xampp\htdocs\shops\admin\user
-$dir = str_replace("admin\user", "", __DIR__); //C:\xampp\htdocs\shops\
+$dir = str_replace("admin\user","", __DIR__); //C:\xampp\htdocs\shops\
 require_once $dir . 'dals/UserDAL.php'; //relative C:\xampp\htdocs\shops\UserDAL.php -> tuyet doi
 $dal = new UserDAL();
 if (isset($_POST['email'])) {
+  
   $checked = $dal->addOne($_POST);
   if ($checked) {
-    //flash session
     $_SESSION['add-status'] = [
       'success' => 1,
       'message' => 'Add successfully'
@@ -88,7 +88,7 @@ if (isset($_POST['email'])) {
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link " href="../sign-in.php">
+          <a class="nav-link " href="../user/sign-in.php">
             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
               <i class="ni ni-single-copy-04 text-warning text-sm opacity-10"></i>
             </div>
@@ -96,7 +96,7 @@ if (isset($_POST['email'])) {
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link " href="../sign-up.php">
+          <a class="nav-link " href="../user/sign-up.php">
             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
               <i class="ni ni-collection text-info text-sm opacity-10"></i>
             </div>
@@ -134,19 +134,16 @@ if (isset($_POST['email'])) {
             <label for="exampleFormControlInput1" class="form-label">Email address</label>
             <input type="email" required class="form-control" name="email" id="exampleFormControlInput1">
           </div>
-
+          <div class="m-4">
+            <label for="password" class="form-label">Password</label>
+            <input type="text" required class="form-control" name="password" id="password">
+          </div>
           <div class="m-4">
             <label for="phone" class="form-label">Phone</label>
             <input type="phone" required class="form-control" name="phone" id="phone">
           </div>
 
-          <div class="m-4">
-            <label for="password" class="form-label">Password</label>
-            <input type="password" required class="form-control" name="password" id="password">
-          </div>
-
           <div>
-
             <button class="btn btn-primary m-4">Add</button>
           </div>
         </form>

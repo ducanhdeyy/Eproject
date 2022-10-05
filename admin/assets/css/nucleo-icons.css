@@ -1,9 +1,4 @@
-/*--------------------------------
 
-hermes-dashboard-icons Web Font - built using nucleoapp.com
-License - nucleoapp.com/license/
-
--------------------------------- */
 @font-face {
   font-family: 'NucleoIcons';
   src: url('../fonts/nucleo-icons.eot');
@@ -12,9 +7,6 @@ License - nucleoapp.com/license/
   font-style: normal;
 }
 
-/*------------------------
-    base class definition
--------------------------*/
 .ni {
   display: inline-block;
   font: normal normal normal 14px/1 NucleoIcons;
@@ -24,9 +16,6 @@ License - nucleoapp.com/license/
   -moz-osx-font-smoothing: grayscale;
 }
 
-/*------------------------
-  change icon size
--------------------------*/
 .ni-lg {
   font-size: 1.33333333em;
   line-height: 0.75em;

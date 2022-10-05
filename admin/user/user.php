@@ -30,7 +30,7 @@ $list = $dal->getList();
   <link id="pagestyle" href="../assets/css/argon-dashboard.css?v=2.0.4" rel="stylesheet" />
 </head>
 
-<body class="g-sidenav-show   bg-gray-100">
+<body class="g-sidenav-show bg-gray-100">
   <div class="min-height-300 bg-primary position-absolute w-100"></div>
   <aside class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4 " id="sidenav-main">
     <div class="sidenav-header">
@@ -79,7 +79,7 @@ $list = $dal->getList();
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link " href="../sign-in.php">
+          <a class="nav-link " href="../user/sign-in.php">
             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
               <i class="ni ni-single-copy-04 text-warning text-sm opacity-10"></i>
             </div>
@@ -87,7 +87,7 @@ $list = $dal->getList();
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link " href="../sign-up.php">
+          <a class="nav-link " href="../user/sign-up.php">
             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
               <i class="ni ni-collection text-info text-sm opacity-10"></i>
             </div>

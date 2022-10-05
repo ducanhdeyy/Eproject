@@ -1,6 +1,7 @@
 <?php
 require_once "config.php";
 require_once "Utils.php";
+require_once "dals/UserDAL.php";
 if(!isset($_GET['id']) && is_numeric($_GET['id'])){
     header("location:index.php");
 }
@@ -11,6 +12,8 @@ if(!$conn){
 }
 $rs = mysqli_query($conn, "SELECT *FROM product WHERE id=$id");
 $product = mysqli_fetch_assoc($rs);
+$dal = new UserDAL();
+$get = $dal->getOne($id);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -109,9 +112,8 @@ $product = mysqli_fetch_assoc($rs);
             </table>
             <div class="border border-slate-300 mt-3 w-full bg-slate-100">
                 <p><i class="fa fa-check p-2" aria-hidden="true"></i>Guarantee:<strong>10 years.</strong>Warranty of
-                    shaking. <a href="" style="color: blueviolet;">See more</a></p>
-                <p><i class="fa fa-check p-2" aria-hidden="true"></i>Maintenance:<strong>Free.</strong>2 times/year. <a
-                        href="" style="color: blueviolet;">See more</a></p>
+                    shaking.</p>
+                <p><i class="fa fa-check p-2" aria-hidden="true"></i>Maintenance:<strong>Free.</strong>2 times/year.</p>
                 <p><i class="fa fa-check p-1" aria-hidden="true"></i> Installation:<strong>Free.</strong></p>
             </div>
             <div>
@@ -136,7 +138,7 @@ $product = mysqli_fetch_assoc($rs);
                 </a>
             </div>
             <div class="border border-slate-300 mt-7 w-10/12 bg-slate-100 rounded-md p-2 text-center">
-                <span><i class="fa fa-phone" aria-hidden="true"></i> Support: (036).8353.135</span>
+                <span><i class="fa fa-phone" aria-hidden="true"></i><?php echo $get->phone; ?></span>
             </div>
         </div>
     </div>

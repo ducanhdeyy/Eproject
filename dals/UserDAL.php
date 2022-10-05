@@ -25,8 +25,9 @@
         $prp->bindParam(':author',$data['author']);
         $prp->bindParam(':email',$data['email']);
         $prp->bindParam(':password',$password);
+        $password=md5(md5($data['password']));
         $prp->bindParam(':phone',$data['phone']);
-        $password=md5(md5($data['password']));    
+           
         try{
             $prp->execute();
             return true;
@@ -50,7 +51,7 @@
         $prp = $this->pdo->prepare("UPDATE $this->tableName SET author=:author, email=:email,password=:password,phone=:phone WHERE id=$id");
         $prp->bindParam(':author',$data['author']);
         $prp->bindParam(':email',$data['email']);
-        $prp->bindParam(':password',$password);
+        $prp->bindParam(':password',$data['password']);
         $prp->bindParam(':phone',$data['phone']); 
         $password=md5(md5($data['password']));
         try{
@@ -60,5 +61,17 @@
             return false;
         }
     }
-  }
+    public function signin($id){
+        $sql = "SELECT *FROM $this->tableName WHERE id=$id";
+        $rs = $this->pdo->query($sql);  
+        $rs->setFetchMode(PDO::FETCH_OBJ);
+        return $rs->fetch();
+    }
+    public function signup($id){
+        $sql = "SELECT *FROM $this->tableName WHERE id=$id";
+        $rs = $this->pdo->query($sql);  
+        $rs->setFetchMode(PDO::FETCH_OBJ);
+        return $rs->fetch();
+    }
+}
 ?>

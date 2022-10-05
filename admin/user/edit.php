@@ -4,7 +4,7 @@ if ($_GET['id'] && !is_numeric($_GET['id'])) {
   header('Location:user.php');
 }
 $id = $_GET['id'];
-$dir = str_replace("admin\user", "", __DIR__);
+$dir = str_replace("admin\user","", __DIR__);
 require_once $dir . 'dals/UserDAL.php';
 $dal = new UserDAL();
 
@@ -23,9 +23,7 @@ if (isset($_POST['email'])) {
     ];
   }
 }
-
 $obj = $dal->getOne($id);
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -94,7 +92,7 @@ $obj = $dal->getOne($id);
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link " href="../sign-in.php">
+          <a class="nav-link " href="../user/sign-in.php">
             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
               <i class="ni ni-single-copy-04 text-warning text-sm opacity-10"></i>
             </div>
@@ -102,7 +100,7 @@ $obj = $dal->getOne($id);
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link " href="../sign-up.php">
+          <a class="nav-link " href="../user/sign-up.php">
             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
               <i class="ni ni-collection text-info text-sm opacity-10"></i>
             </div>
@@ -151,7 +149,6 @@ $obj = $dal->getOne($id);
             <label for="password" class="form-label">Password</label>
             <input type="text" value="<?php echo $obj->password; ?>" required class="form-control" name="password" id="password">
           </div>
-
           <div>
             <button type="submit" class="btn btn-primary">Edit</button>
           </div>

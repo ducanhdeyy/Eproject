@@ -1,5 +1,6 @@
 <?php
 require_once "config.php";
+require_once 'Utils.php';
 $conn = mysqli_connect('localhost', 'root', '', 'fanofan');
 if (!$conn) {
     echo mysqli_connect_error();
@@ -51,57 +52,53 @@ $rs = mysqli_query($conn, "SELECT *,product.id as product_id,product.name as pro
         </div>
     </header>
     <!-- banner -->
-    <div class="grid lg:flex  gap-8 ">
-        <div style="width: 27%">
+    <div class="grid lg:flex gap-10 ">
+        <div style="width: 25%">
             <div class="border-2 border-sky-500 my-6 shadow-lg shadow-indigo-500/40 ...">
-                <div class="card-header border-b-2 border-sky-500 bg-slate-400 p-3 text-xl text-white"> Ceiling Fans
+                <div class="card-header border-b-2 border-sky-500 bg-slate-400 p-1 text-xl text-white"> Ceiling Fans
                 </div>
-                <div class="card-body text-info ">
-                    <a class="card-text p-3 hover:text-slate-600" href="# ">Modern Ceiling Fan</a> <br>
-                    <a class="card-text p-3" href="# ">Classic Ceiling Fan</a> <br>
-                    <a class="card-text p-3" href="# ">Beautiful Wall Fan</a> <br>
-                    <a class="card-text p-3" href="# ">Unique-Strange Ceiling fan</a> <br>
-                    <a class="card-text p-3" href="# ">Ceiling Fan Accessories</a> <br>
+                <div class="">
+                    <p><a class="px-3 hover:text-slate-600" href="# ">Modern Ceiling Fan</a></p>
+                    <p><a class="px-3 hover:text-slate-600" href="# ">Classic Ceiling Fan</a> </p>
+                    <p> <a class="px-3 hover:text-slate-600" href="# ">Beautiful Wall Fan</a> </p>
+                    <p><a class="px-3 hover:text-slate-600" href="# ">Unique-Strange Ceiling fan</a> </p>
+                    <p><a class="px-3 hover:text-slate-600" href="# ">Ceiling Fan Accessories</a></p>
                 </div>
             </div>
             <div class="border-2 border-sky-500 shadow-lg shadow-indigo-500/40 ...">
-                <div class="card-header border-b-2 border-sky-500 bg-slate-400 p-3 text-xl text-white">Table Fan
+                <div class="card-header border-b-2 border-sky-500 bg-slate-400 px-3 text-xl text-white">Table Fan
                 </div>
-                <div class="card-body text-info ">
-                    <a class="card-text p-3" href="# ">Table fan with 3 wings</a> <br>
-                    <a class="card-text p-3" href="# ">Table fan charged</a> <br>
-                    <a class="card-text p-3" href="# ">High foot fan</a> <br>
-                    <a class="card-text p-3" href="# ">Misting fan</a> <br>
-                    <a class="card-text p-3" href="# ">Fans for outdoor</a> <br>
+                <div class="">
+                    <p><a class="px-3 hover:text-slate-600" href="# ">Table fan with 3 wings</a> </p>
+                    <p> <a class="px-3 hover:text-slate-600" href="# ">Table fan charged</a> </p>
+                    <p><a class="px-3 hover:text-slate-600" href="# ">High foot fan</a> </p>
+                    <p> <a class="px-3 hover:text-slate-600" href="# ">Misting fan</a> </p>
+                    <p><a class="px-3 hover:text-slate-600" href="# ">Fans for outdoor</a> </p>
                 </div>
             </div>
         </div>
 
-        <div class="grid grid-cols-3 gap-8">
-            <?php foreach ($rs as $product) : ?>
-
-
+        <div class="grid lg:grid-cols-3 grid-cols-1 gap-8">
+            <?php foreach ($rs as $product): ?>
                 <div>
                     <div class="relative block mt-3 rounded-sm bg-white shadow-lg shadow-indigo-500/40 ... transition-transform hover:translate-y-1">
                         <div>
                             <img class="bg-no-repeat bg-contain bg-top-center rounded-t-sm" src="<?php echo BASE_URL . $product['image'] ?>" alt="">
                         </div>
                         <div>
-                            <h4 class="m-2 mb-1 text-xl font-semibold leading-7  h-14 text-black"><?php echo $product['name'] ?></h4>
-                            <p class="m-2 mb-1 text-xl font-semibold leading-7  h-14 text-black block"><?php echo $product['content'] ?></p>
+                            <h4 class="m-2 mb-1 text-xl font-semibold leading-7 lg:h-8 h-8 text-black"><?php echo $product['name'] ?></h4>
+                            <p class="m-2 mb-1 text-sm leading-7 lg:h-14 h-14 text-black block"><?php echo $product['content'] ?></p>
                             <div class="flex items-baseline flex-wrap my-0 mx-2">
-                                <span class="text-red-600 text-2xl mt-1"><?php echo $product['price'] ?></span>
+                                <span class="text-red-600 text-2xl mt-1"><?php echo Utils::formatMoney($product['price']) ?></span>
                             </div>
                             <div class="text-lg flex pb-2 pt-2 px-2  font-light text-gray-500">
                                 <a href="" class="border border-inherit bg-slate-900 text-white px-3 py-1 rounded-md hover:bg-red-500 hover:border-transparent  justify-between items-center"><i class="fa fa-cart-plus" aria-hidden="true"></i></a>
-                                <a href="details.php" class="border border-inherit bg-slate-900 text-white px-3 py-1 rounded-md hover:bg-red-500 hover:border-transparent  justify-between items-center ml-2">Show
+                                <a href="detail.php?id=<?php echo $product['product_id']; ?>" class="border border-inherit bg-slate-900 text-white px-3 py-1 rounded-md hover:bg-red-500 hover:border-transparent  justify-between items-center ml-2">Show
                                     more</a>
                             </div>
                         </div>
                     </div>
-
                 </div>
-
             <?php endforeach ?>
         </div>
     </div>

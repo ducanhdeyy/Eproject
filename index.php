@@ -1,5 +1,6 @@
 <?php
 require_once "config.php";
+require_once 'Utils.php';
 $conn = mysqli_connect('localhost','root','','fanofan');
 if(!$conn){
   echo mysqli_connect_error();
@@ -27,12 +28,12 @@ $rs = mysqli_query($conn, "SELECT *,product.id as product_id,product.name as pro
          <nav class="flex justify-between items-center py-5">
             <!-- logo -->
             <div style="height: 35px; width: 138px;" class="w-28 lg:w-full lg:mx-5 z-20 mx-0">
-               <a href="home.php"><img src="./img/logo.png" alt=""></a>
+               <a href="index.php"><img src="./img/logo.png" alt=""></a>
             </div>
             <!-- link -->
             <ul id="menu" class="invisible fixed z-20 top-0 left-0 w-full h-screen flex flex-col justify-center items-center bg-gray-900 bg-opacity-90 lg:bg-transparent lg:h-auto lg:flex-row lg:justify-evenly lg:static
                     md:visible">
-               <li class="m-12 lg:m-0"><a href="home.php" class="text-white md:text-black hover:text-red-500">Home</a>
+               <li class="m-12 lg:m-0"><a href="index.php" class="text-white md:text-black hover:text-red-500">Home</a>
                </li>
                <li class="m-12 lg:m-0"><a href="product.php" class="text-white md:text-black hover:text-red-500">Product</a></li>
                <li class="m-12 lg:m-0"><a href="about.php" class="text-white md:text-black hover:text-red-500">About</a></li>
@@ -53,16 +54,12 @@ $rs = mysqli_query($conn, "SELECT *,product.id as product_id,product.name as pro
    <section>
       <div class="w-full bg-no-repeat bg-cover relative h-96" style="background-image: url('./img/background.jpg');">
          <div class="absolute top-3/4 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 text-white text-center">
-            <!-- title -->
             <h1 class="text-4xl mb-5 font-bold max-w-2xl md:leading-relaxed md:text-5xl">Ceiling LED Light Fans</h1>
-            <!-- desc -->
             <p class="text-xl mb-5 font-light">Feel the aristocratic style right in your living room
             <p>
-               <!-- buttons -->
          </div>
       </div>
    </section>
-   <!-- new-product -->
 
    <div class="container__product">
       <div class="mx-0 my-4 lg:mx-40">
@@ -76,10 +73,10 @@ $rs = mysqli_query($conn, "SELECT *,product.id as product_id,product.name as pro
                <img class="bg-no-repeat bg-contain bg-top-center rounded-t-sm" src="<?php echo BASE_URL . $product['image']; ?>" alt="">
             </div>
             <div>
-               <h4 class="m-2 mb-1 text-xl font-semibold leading-7  h-14 text-black"><?php echo $product['name']; ?></h4>
-               <p class="m-2 mb-1 text-xl font-semibold leading-7  h-14 text-black block"><?php echo $product['content']; ?></p>
+               <h4 class="m-2 mb-1 text-xl font-semibold leading-7 h-8 text-black"><?php echo $product['name']; ?></h4>
+               <p class="m-2 mb-1 text-sm leading-7 h-20 text-black block"><?php echo $product['content']; ?></p>
                <div class="flex items-baseline flex-wrap my-0 mx-2">
-                  <span class="text-red-600 text-2xl mt-1"><?php echo $product['price'] ?></span>
+                  <span class="text-red-600 text-2xl mt-1"><?php echo Utils::formatMoney($product['price'])  ?></span>
                </div>
                <div class="text-lg flex pb-2 pt-2 px-2  font-light text-gray-500">
                   <a href="" class="border border-inherit bg-slate-900 text-white px-3 py-1 rounded-md hover:bg-red-500 hover:border-transparent  justify-between items-center"><i class="fa fa-cart-plus" aria-hidden="true"></i></a>
