@@ -48,7 +48,7 @@ if(isset($_POST['signup'])){
       <nav class="flex justify-center items-center py-5 lg:pl-60 pl-1">
         <!-- logo -->
         <div style="height: 35px; width: 138px;" class="w-32 md:w-full z-20">
-          <a href="index.php"><img src="../Eprojects/admin/assets/main.css" alt=""></a>
+          <a href="index.php"><img src="../Eprojects/img/logo.png" alt=""></a>
         </div>
         <!-- link -->
       </nav>
