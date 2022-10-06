@@ -12,7 +12,7 @@ if(isset($_POST['login'])){
   if(mysqli_num_rows($success)==1){
     header('location:index.php');
   }else{
-    echo "Bạn nhập sai mật khẩu, vui lòng nhập lại";
+    echo $failed = "Bạn nhập sai mật khẩu, vui lòng nhập lại";
   }
 }
 ?>
@@ -40,22 +40,24 @@ if(isset($_POST['login'])){
       <!-- container -->
       <div class="container">
           <nav class="flex justify-center items-center py-5 lg:pl-60 pl-1">
-              <!-- logo -->
               <div style="height: 35px; width: 138px;" class="w-32 md:w-full z-20">
                  <a href="index.php"><img src="../Eprojects/img/logo.png" alt=""></a>
               </div>
-              <!-- link -->
           </nav>
       </div>
       <div class="wrapper">
         <div class="signup">
           <h1 class="signup-heading">Login</h1>
+          <?php  
+          
+          ?>
           <div class="signup-or"><span>Or</span></div>
           <form action="#" class="signup-form"method="POST" enctype="multipart/form-data">
             <label for="email" class="signup-label">Email</label>
             <input type="email" id="email" class="signup-input" name="email" placeholder="Eg: a@gmai.com">
             <label for="password" class="signup-label">Password</label>
             <input type="password" id="password" name="password" class="signup-input" placeholder="Mời bạn nhập mật khẩu">
+            
             <button class="signup-submit" name="login">Login</button>
           </form>
           <p class="signup-already">

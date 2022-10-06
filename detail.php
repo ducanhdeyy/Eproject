@@ -53,7 +53,7 @@ $get = $dal->getOne($id);
                     <button class="m-12 md:m-0 text-white md:text-black hover:text-red-500"><a
                             href="signup.php">Signup</a></button>
                     <button class="m-12 md:m-0 text-white md:text-black hover:text-red-500""><a href="
-                        login.php">Login</a> </button>
+                        signin.php">Login</a> </button>
                 </ul>
                 <!-- menu botton -->
                 <div id="menu-button" class="z-20 md:hidden cursor-pointer">
@@ -138,7 +138,7 @@ $get = $dal->getOne($id);
                 </a>
             </div>
             <div class="border border-slate-300 mt-7 lg:w-10/12 w-full bg-slate-100 rounded-md p-2 text-center">
-                <span><i class="fa fa-phone" aria-hidden="true"></i><?php ?></span>
+                <span><i class="fa fa-phone" aria-hidden="true"></i> Support: (036).8353.135</span>
             </div>
         </div>
     </div>
@@ -237,7 +237,7 @@ $get = $dal->getOne($id);
                 <tbody>
                     <tr>
                         <th><img style="width: 68.38px; height: 68.38px; border-radius: 50%; margin-right: 8px;"
-                                src="../img/avt.jpg" alt=""></th>
+                                src="../Eprojects/img/avt.jpg" alt=""></th>
                         <td>
                             <p>
                                 <span><i class="fa fa-star" style="color: #ff9900;" aria-hidden="true"></i></span>
@@ -261,7 +261,7 @@ $get = $dal->getOne($id);
                 <tbody>
                     <tr>
                         <th><img style="width: 68.38px; height: 68.38px; border-radius: 50%; margin-right: 8px;"
-                                src="../img/avt.jpg" alt=""></th>
+                                src="../Eprojects/img/avt.jpg" alt=""></th>
                         <td>
                             <p>
                                 <span><i class="fa fa-star" style="color: #ff9900;" aria-hidden="true"></i></span>
@@ -284,7 +284,7 @@ $get = $dal->getOne($id);
                 <tbody>
                     <tr>
                         <th><img style="width: 68.38px; height: 68.38px; border-radius: 50%; margin-right: 8px;"
-                                src="../img/avt.jpg" alt=""></th>
+                                src="../Eprojects/img/avt.jpg" alt=""></th>
                         <td>
                             <p>
                                 <span><i class="fa fa-star" style="color: #ff9900;" aria-hidden="true"></i></span>
@@ -307,7 +307,7 @@ $get = $dal->getOne($id);
                 <tbody>
                     <tr>
                         <th><img style="width: 68.38px; height: 68.38px; border-radius: 50%; margin-right: 8px;"
-                                src="../img/avt.jpg" alt=""></th>
+                                src="../Eprojects/img/avt.jpg" alt=""></th>
                         <td>
                             <p>
                                 <span><i class="fa fa-star" style="color: #ff9900;" aria-hidden="true"></i></span>
