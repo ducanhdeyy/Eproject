@@ -1,15 +1,19 @@
 <?php
-session_start();
-require_once 'dals/UserDAL.php';
-$userDAL = new UserDAL();
-if(isset($_POST['email'])){
- $a =  $userDAL->login($_POST);
- if($a){
-  $_SESSION['login'] = $a;
-   header('location:index.php');
- }else{
-  $failed = "tài khoản mật khẩu không chính xác";
- }
+$conn = mysqli_connect('localhost','root','','fanofan');
+if(!$conn){
+  echo mysqli_connect_error();
+}
+if(isset($_POST['login'])){
+  $email = $_POST['email'];
+  $password = $_POST['password'];
+  $password = md5($_POST['password']);
+  $sql = "SELECT * FROM user WHERE email = '$email' and password = '$password'";
+  $success = mysqli_query($conn,$sql);
+  if(mysqli_num_rows($success)==1){
+    header('location:index.php');
+  }else{
+    echo "Bạn nhập sai mật khẩu, vui lòng nhập lại";
+  }
 }
 ?>
 <!DOCTYPE html>
@@ -47,11 +51,11 @@ if(isset($_POST['email'])){
         <div class="signup">
           <h1 class="signup-heading">Login</h1>
           <div class="signup-or"><span>Or</span></div>
-          <form action="#" class="signup-form" autocomplete="off" method="POST">
+          <form action="#" class="signup-form"method="POST" enctype="multipart/form-data">
             <label for="email" class="signup-label">Email</label>
-            <input type="email" id="email" class="signup-input" placeholder="Eg: a@gmai.com">
+            <input type="email" id="email" class="signup-input" name="email" placeholder="Eg: a@gmai.com">
             <label for="password" class="signup-label">Password</label>
-            <input type="password" id="password" class="signup-input" placeholder="Mời bạn nhập mật khẩu">
+            <input type="password" id="password" name="password" class="signup-input" placeholder="Mời bạn nhập mật khẩu">
             <button class="signup-submit" name="login">Login</button>
           </form>
           <p class="signup-already">

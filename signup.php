@@ -12,13 +12,14 @@ if(isset($_POST['signup'])){
   if($password != $password1){
     header("location:signup.php");
   }
-  $sql = "SELECT *FROM user WHERE email='$email'";
+  $sql = "SELECT *FROM user where email = '$email'";
   $rs = mysqli_query($conn,$sql);
   $password = md5($password);
   if(mysqli_num_rows($rs)>0){
     echo 'Tài khoản đã tồn tại';
   } else{
-    $sql = "INSERT INTO user(author,email,password,phone) VALUES('$name','$email',$password','$phone')";
+    $sql = "INSERT INTO user(author,email,password,phone) VALUES('$name','$email','$password',$phone)";
+    echo $sql;
     mysqli_query($conn,$sql);
     echo "Đăng ký thành công";
     header("location:index.php");

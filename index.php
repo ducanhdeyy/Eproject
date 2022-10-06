@@ -43,7 +43,7 @@ $productDAL = new ProductDAL();
                <li class="m-12 lg:m-0"><a href="product.php" class="text-white md:text-black hover:text-red-500">Product</a></li>
                <li class="m-12 lg:m-0"><a href="about.php" class="text-white md:text-black hover:text-red-500">About</a></li>
                <button class="m-12 lg:m-0 text-white md:text-black hover:text-red-500"><a href="signup.php">Signup</a></button>
-               <button class="m-12 lg:m-0 text-white md:text-black hover:text-red-500"><a href="login.php">Login</a> </button>
+               <button class="m-12 lg:m-0 text-white md:text-black hover:text-red-500"><a href="signin.php">Login</a> </button>
             </ul>
             <!-- menu botton -->
             <div id="menu-button" class="z-20 md:hidden cursor-pointer">

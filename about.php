@@ -34,7 +34,7 @@
                     <button class="m-12 lg:m-0 text-white md:text-black hover:text-red-500"><a
                             href="signup.php">Signup</a></button>
                     <button class="m-12 lg:m-0 text-white md:text-black hover:text-red-500"><a
-                            href="login.php">Login</a> </button>
+                            href="signin.php">Login</a> </button>
                 </ul>
                 <!-- menu botton -->
                 <div id="menu-button" class="z-20 lg:hidden cursor-pointer">
