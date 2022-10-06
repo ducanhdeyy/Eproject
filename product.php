@@ -69,22 +69,22 @@ if (isset($_GET['id'])) {
                 <div class="card-header border-b-2 border-sky-500 bg-slate-400 px-3 text-xl text-white"> Ceiling Fans
                 </div>
                 <div class="">
-                    <p><a class="px-3 hover:text-slate-600" href="# ">Modern Ceiling Fan</a></p>
-                    <p><a class="px-3 hover:text-slate-600" href="# ">Classic Ceiling Fan</a> </p>
-                    <p> <a class="px-3 hover:text-slate-600" href="# ">Beautiful Wall Fan</a> </p>
-                    <p><a class="px-3 hover:text-slate-600" href="# ">Unique-Strange Ceiling fan</a> </p>
-                    <p><a class="px-3 hover:text-slate-600" href="# ">Ceiling Fan Accessories</a></p>
+                    <p><a class="px-3 hover:text-red-800" href="# ">Modern Ceiling Fan</a></p>
+                    <p><a class="px-3 hover:text-red-800" href="# ">Classic Ceiling Fan</a> </p>
+                    <p> <a class="px-3 hover:text-red-800" href="# ">Beautiful Wall Fan</a> </p>
+                    <p><a class="px-3 hover:text-red-800" href="# ">Unique-Strange Ceiling fan</a> </p>
+                    <p><a class="px-3 hover:text-red-800" href="# ">Ceiling Fan Accessories</a></p>
                 </div>
             </div>
             <div class="border-2 border-sky-500 shadow-lg shadow-indigo-500/40 ...">
                 <div class="card-header border-b-2 border-sky-500 bg-slate-400 px-3 text-xl text-white">Table Fan
                 </div>
                 <div class="">
-                    <p><a class="px-3 hover:text-slate-600" href="# ">Table fan with 3 wings</a> </p>
-                    <p> <a class="px-3 hover:text-slate-600" href="# ">Table fan charged</a> </p>
-                    <p><a class="px-3 hover:text-slate-600" href="# ">High foot fan</a> </p>
-                    <p> <a class="px-3 hover:text-slate-600" href="# ">Misting fan</a> </p>
-                    <p><a class="px-3 hover:text-slate-600" href="# ">Fans for outdoor</a> </p>
+                    <p><a class="px-3 hover:text-red-800" href="# ">Table fan with 3 wings</a> </p>
+                    <p> <a class="px-3 hover:text-red-800" href="# ">Table fan charged</a> </p>
+                    <p><a class="px-3 hover:text-red-800" href="# ">High foot fan</a> </p>
+                    <p> <a class="px-3 hover:text-red-800" href="# ">Misting fan</a> </p>
+                    <p><a class="px-3 hover:text-red-800" href="# ">Fans for outdoor</a> </p>
                 </div>
             </div>
         </div>
@@ -155,10 +155,10 @@ if (isset($_GET['id'])) {
         <div>
             <h6 class="text-lg font-bold uppercase text-gray-700">CONTACT</h6>
             <hr style="height: 2em;width:25%;">
-            <p><i class="fa fa-home text-base" aria-hidden="true">Ha Noi, Viet Nam</i></p>
-            <p><i class="fa fa-envelope-o text-base" aria-hidden="true">abcd@gmail.com</i></p>
-            <p><i class="fa fa-phone text-base" aria-hidden="true">90-123-4567</i></p>
-            <p><i class="fa fa-print text-base" aria-hidden="true">90-123-4567</i></p>
+            <p><i class="fa fa-home text-base" aria-hidden="true"> Ha Noi, Viet Nam</i></p>
+            <p><i class="fa fa-envelope-o text-base" aria-hidden="true"> abcd@gmail.com</i></p>
+            <p><i class="fa fa-phone text-base" aria-hidden="true"> 90-123-4567</i></p>
+            <p><i class="fa fa-print text-base" aria-hidden="true"> 90-123-4567</i></p>
         </div>
     </section>
     <div class="text-center my-4">

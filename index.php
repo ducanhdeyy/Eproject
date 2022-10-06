@@ -125,10 +125,10 @@ $productDAL = new ProductDAL();
       <div>
          <h6 class="text-lg font-bold uppercase text-gray-700">CONTACT</h6>
          <hr style="height: 2em;width:25%;">
-         <p><i class="fa fa-home text-base" aria-hidden="true">Ha Noi, Viet Nam</i></p>
-         <p><i class="fa fa-envelope-o text-base" aria-hidden="true">abcd@gmail.com</i></p>
-         <p><i class="fa fa-phone text-base" aria-hidden="true">90-123-4567</i></p>
-         <p><i class="fa fa-print text-base" aria-hidden="true">90-123-4567</i></p>
+         <p><i class="fa fa-home text-base" aria-hidden="true"> Ha Noi, Viet Nam</i></p>
+         <p><i class="fa fa-envelope-o text-base" aria-hidden="true"> abcd@gmail.com</i></p>
+         <p><i class="fa fa-phone text-base" aria-hidden="true"> 90-123-4567</i></p>
+         <p><i class="fa fa-print text-base" aria-hidden="true"> 90-123-4567</i></p>
       </div>
    </section>
    <div class="text-center my-4">

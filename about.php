@@ -55,12 +55,12 @@
             <div
                 class="relative lg:w-1/5 my-6 lg:mx-3 pt-4 rounded-sm bg-slate-100 shadow-lg shadow-indigo-500/40 transition-transform hover:translate-y-1 px-4">
                 <div>
-                    <img class="bg-no-repeat bg-contain bg-top-center rounded-full" src="../Eprojects/admin/assets/img/avt.jpg"
+                    <img class="bg-no-repeat bg-contain bg-top-center rounded-full" src="../Eprojects/img/avt1.jpg"
                         alt="">
                 </div>
                 <div>
-                    <h4 class="mt-2 text-xl font-semibold leading-10 h-7  text-black text-center">Nguyễn Đức Anh</h4>
-                    <p class="text-sm capitalize mb-1 text-slate-500 text-center leading-10 h-7">UI/UX Designer</p>
+                    <h4 class="mt-2 text-xl font-semibold leading-10 h-7  text-black text-center">Nguyễn Tuấn Anh</h4>
+                    <p class="text-sm capitalize mb-1 text-slate-500 text-center leading-10 h-7">Web developed</p>
                 </div>
                 <div>
                     <ul class="flex justify-center mx-auto">
